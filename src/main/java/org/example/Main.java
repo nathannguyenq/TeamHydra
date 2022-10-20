@@ -1,6 +1,5 @@
 package org.example;
 
-<<<<<<< HEAD
 import org.example.Model.Items;
 import org.example.Model.Player;
 import org.example.Model.Puzzle;
@@ -195,10 +194,4 @@ public class Main {
         }
     }
 }
-=======
-// Change done by Nathan
-// Comment added by Aroosa
-// Commrnt added by Baudel
-// Comment added by Daniel
-// Comment added by Marcello
->>>>>>> 90f82493d5cf8586022a50e32b0ec1803561f826
+
