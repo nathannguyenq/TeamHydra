@@ -1,0 +1,6 @@
+keys
+set of keys
+Building B
+crystal
+Shiny Crystal
+Building A

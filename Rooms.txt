@@ -1,0 +1,8 @@
+1
+SW_0
+The room is dark and it is hard to see your way around. However, through the blackness, you manage to eke out the figure of what seems to be a doorway to the EAST.
+-,-,SW_1,-
+2
+SW_1
+There is a single torch illuminating the room. As you scan the room, you notice a pile of armor. There is  a door to your EAST and another to your WEST.
+-,-,SW_2,SW_0
