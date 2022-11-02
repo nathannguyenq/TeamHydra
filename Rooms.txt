@@ -6,3 +6,5 @@ The room is dark and it is hard to see your way around. However, through the bla
 SW_1
 There is a single torch illuminating the room. As you scan the room, you notice a pile of armor. There is  a door to your EAST and another to your WEST.
 -,-,SW_2,SW_0
+3
+SW_2
