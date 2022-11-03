@@ -1,0 +1,72 @@
+Crow
+Large Bird with shiny black feathers. Armed with razor sharp talons and a beak used to crack skulls.
+200
+MTL_0 MTL_1 MTL_2 MTL_3 MTL_5 MTL_6 MTU_1
+Crow defeated
+Defeated by crow
+Fight crow
+5
+10
+Cat
+A sneaky creature who uses its hidden claws to take down its prey.
+200
+SW_10 MTL_0 MTL_1 MTL_2 MTL_3 MTL_5 MTL_6
+Cat defeated
+Defeated by Cat
+Fight Cat
+5
+10
+Roach
+Small but disgusting. The roach uses the toxins its collected over the years in the sewer to attack its foes
+100
+SW_4 SW_5 SW_6 SW_10
+Roach defeated
+Defeated by Roach
+Fight Roach
+3
+5
+Flying_Roach
+Like his roach cousin. The flying roach attacks its foes from the skies.
+100
+SW_4 SW_5 SW_6 SW_10
+Flying_Roach defeated
+Defeated by Flying_Roach
+Fight Flying_Roach
+3
+5
+Person
+Rulers of the overworld. Humans are armed with traps and rat poisons
+300
+MTL_0 MTL_1 MTL_2 MTL_3 MTL_5 MTL_6 MTL_7 MTU_0 MTU_2 MTU_4 MTU_5 CL_1 CL_4 CL_2 CL_0 CL_1
+Person defeated
+Defeated by Person
+Fight Person
+10
+15
+Rat_Thug
+Betrayed by your own kind. These rats were paid off by the king to stop you.
+200
+SW_5 SW_6 SW_10 CL_3
+Rat_Thug defeated
+Defeated by Rat_Thug
+Fight Rat_Thug
+25
+10
+Cat_Assassing
+A well trained assassin armed with a sharp dagger. The king's last line of defense.
+400
+CU_4
+Cat_Assassing defeated
+Defeated by Cat_Assassing
+Fight Cat_Assassing
+50
+20
+King
+The desperate ruler of the land. He grasps the little power he has left. The king is a cowardly fighter. Give him an inch and he’ll take a mile.
+500
+CL_6
+King defeated
+Defeated by King
+Fight King
+50
+25

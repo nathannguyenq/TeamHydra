@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.Model.Items;
+import org.example.Model.Monster;
 import org.example.Model.Player;
 import org.example.Model.Puzzle;
 import org.example.Model.Rooms;
@@ -17,9 +18,12 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
+        HashMap<String, Monster> MonsterHashMap = new HashMap<>(); /////////- BAUDEL
+
         HashMap<String, Items> itemsHashMap = new HashMap<>();
         HashMap<String, Puzzle> puzzleHashMap = new HashMap<>();
         HashMap<String, Rooms> roomsHashMap = new HashMap<>();
+        
         ArrayList<String> pStorage = new ArrayList<>();
 
         ArrayList<String> flag = new ArrayList<>();
@@ -27,6 +31,38 @@ public class Main {
         int tempAttempt;
 
         Player player = new Player();
+    ///////////////////////////////////////////////////////////////////////////////////////////////--BAUDEL    
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("Monsters.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+
+                ArrayList<String> temp = new ArrayList<>();
+
+                String mName = line;
+                String mDescription = reader.readLine();
+                int pLocation = Integer.parseInt(reader.readLine());
+                String[] neighbors = reader.readLine().split(" ");
+                for (int i = 0; i < neighbors.length; i++) {
+                    neighbors[i] = neighbors[i].trim();
+                    String tem = neighbors[i];
+                    temp.add(tem);
+                }
+               String pDescription = reader.readLine();
+               String pAnswer = reader.readLine();
+               String pnswer = reader.readLine();
+                int pLocion = Integer.parseInt(reader.readLine());
+                int pcation = Integer.parseInt(reader.readLine());
+
+                MonsterHashMap.put(mName, new Monster(mName,mDescription,pLocation,temp,pDescription,pAnswer,pnswer,pLocion,pcation));
+//                System.out.print(MonsterHashMap.get(mName).getName());
+//                System.out.print(" = ");
+//                System.out.println(MonsterHashMap.get(mName).getGoldReward());
+            }
+        } catch (IOException e) {
+            System.out.println("File not found");
+        }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader("puzzle.txt"));
@@ -80,6 +116,45 @@ public class Main {
         } catch (IOException e) {
             System.out.println("File not found");
         }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        
+        
+        
+        
+        
 
         boolean running = true;
 
