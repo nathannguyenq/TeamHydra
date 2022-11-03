@@ -1,6 +1,12 @@
-keys
-set of keys
-Building B
-crystal
-Shiny Crystal
-Building A
+IT_0
+cheese
+A mouth-watering wedge of sharp cheddar cheese valued at 10 HP.
+SW_1
+0
+10
+IT_1
+royal cheese 1
+A royal wedge of cheese. Characterized by it’s smooth, creamy texture and high performance inducing ingredients. valued at 50 HP when consumed.
+SW_0
+0
+50

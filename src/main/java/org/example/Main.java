@@ -32,6 +32,7 @@ public class Main {
             BufferedReader reader = new BufferedReader(new FileReader("puzzle.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
+
                 String pName = line;
                 String pID = reader.readLine();
                 String pLocation = reader.readLine();
@@ -49,11 +50,14 @@ public class Main {
             BufferedReader reader = new BufferedReader(new FileReader("Items.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
-                String iName = line;
+                String iID = line;
+                String iName = reader.readLine();
                 String iDescription = reader.readLine();
                 String iLocation = reader.readLine().trim();
+                int iAttack = Integer.parseInt(reader.readLine());
+                int iHeal = Integer.parseInt(reader.readLine());
 
-                itemsHashMap.put(iName, new Items(iName, iDescription, iLocation));
+                itemsHashMap.put(iName, new Items(iID,iName, iDescription, iLocation,iAttack,iHeal));
             }
         } catch (IOException e) {
             System.out.println("File not found");
