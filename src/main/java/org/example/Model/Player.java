@@ -17,7 +17,11 @@ public class Player {
         Rooms current = roomsHashMap.get(location);
 
         String[] temp = current.getNeighbor();
-        if (direction.equals("n")) {
+        if (direction.equals("u")) {
+            direction = "ladder up";
+        } else if (direction.equals("d")) {
+            direction = "ladder down";
+        } else if (direction.equals("n")) {
             direction = "north";
         } else if (direction.equals("s")) {
             direction = "south";
@@ -28,30 +32,44 @@ public class Player {
         }
 
         switch (direction) {
-            case "north":
+            case "ladder up":
                 if (!temp[0].equals("-")) {
                     location = (temp[0]);
                 } else {
                     System.out.println("No Exit, Please try a different way.\n");
                 }
                 break;
-            case "south":
+            case "ladder down":
                 if (!temp[1].equals("-")) {
                     location = (temp[1]);
                 } else {
                     System.out.println("No Exit, Please try a different way.\n");
                 }
                 break;
-            case "east":
+            case "north":
                 if (!temp[2].equals("-")) {
                     location = (temp[2]);
                 } else {
                     System.out.println("No Exit, Please try a different way.\n");
                 }
                 break;
-            case "west":
+            case "south":
                 if (!temp[3].equals("-")) {
                     location = (temp[3]);
+                } else {
+                    System.out.println("No Exit, Please try a different way.\n");
+                }
+                break;
+            case "east":
+                if (!temp[4].equals("-")) {
+                    location = (temp[4]);
+                } else {
+                    System.out.println("No Exit, Please try a different way.\n");
+                }
+                break;
+            case "west":
+                if (!temp[5].equals("-")) {
+                    location = (temp[5]);
                 } else {
                     System.out.println("No Exit, Please try a different way.\n");
                 }
