@@ -86,10 +86,18 @@ public class Main {
             BufferedReader reader = new BufferedReader(new FileReader("Items.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
+
+                ArrayList<String> iLocation = new ArrayList<>();
+
                 String iID = line;
                 String iName = reader.readLine();
                 String iDescription = reader.readLine();
-                String iLocation = reader.readLine();
+                String[] neighbors = reader.readLine().split(",");
+                for (int i = 0; i < neighbors.length; i++) {
+                    neighbors[i] = neighbors[i].trim();
+                    String tem = neighbors[i];
+                    iLocation.add(tem);
+                }
                 int iAttack = Integer.parseInt(reader.readLine());
                 int iHeal = Integer.parseInt(reader.readLine());
                 int mHealth = Integer.parseInt(reader.readLine());
@@ -165,7 +173,6 @@ public class Main {
         System.out.println("\n");
         System.out.println("----------------------------------------");
         System.out.println("Which way do you want to go? (N,E,S,W)" + " or you can quit (q)");
-
         GAME:
         while (running) {
             String input = scanner.nextLine();
@@ -186,7 +193,7 @@ public class Main {
                     }
                     temp = temp.trim();
 
-                    System.out.println(roomsHashMap.get(player.getLocation()).getRoomID());
+                    System.out.println(roomsHashMap.get(player.getLocation()).getRoomName());
 
                     player.explore(temp);
                 } else if (command.length == 1) {
@@ -239,7 +246,7 @@ public class Main {
                     player.getInventory();
                 }
             }
-            if (command[0].equals("ladder up") || command[0].equals("ladder down") || command[0].equals("north") || command[0].equals("south") || command[0].equals("east") || command[0].equals("west") || command[0].equals("u") ||command[0].equals("d") || command[0].equals("n") || command[0].equals("s") || command[0].equals("e") || command[0].equals("w"))
+            if (command[0].equals("ladder-up") || command[0].equals("ladder-down") || command[0].equals("north") || command[0].equals("south") || command[0].equals("east") || command[0].equals("west") || command[0].equals("u") ||command[0].equals("d") || command[0].equals("n") || command[0].equals("s") || command[0].equals("e") || command[0].equals("w"))
             {
                 player.move(command[0], roomsHashMap);
                 if (roomsHashMap.get(player.getLocation()).getPuzzleHashMap().containsKey(player.getLocation())) {

@@ -47,7 +47,7 @@ public class Rooms {
     public void linkItems(HashMap<String, Items> items) {
         for (Map.Entry<String, Items> elt : items.entrySet()) {
 
-            if (elt.getValue().getiLocation().equals(roomID)) {
+            if (elt.getValue().getiLocation().contains(roomID)) {
                 roomItems.put(elt.getKey(), elt.getValue());
             }
         }
