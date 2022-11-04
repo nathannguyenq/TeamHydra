@@ -23,7 +23,7 @@ public class Main {
         HashMap<String, Items> itemsHashMap = new HashMap<>();
         HashMap<String, Puzzle> puzzleHashMap = new HashMap<>();
         HashMap<String, Rooms> roomsHashMap = new HashMap<>();
-        
+
         ArrayList<String> pStorage = new ArrayList<>();
 
         ArrayList<String> flag = new ArrayList<>();
@@ -31,7 +31,7 @@ public class Main {
         int tempAttempt;
 
         Player player = new Player();
-    ///////////////////////////////////////////////////////////////////////////////////////////////--BAUDEL    
+    ///////////////////////////////////////////////////////////////////////////////////////////////--BAUDEL
         try {
             BufferedReader reader = new BufferedReader(new FileReader("Monsters.txt"));
             String line;
@@ -89,11 +89,12 @@ public class Main {
                 String iID = line;
                 String iName = reader.readLine();
                 String iDescription = reader.readLine();
-                String iLocation = reader.readLine().trim();
+                String iLocation = reader.readLine();
                 int iAttack = Integer.parseInt(reader.readLine());
                 int iHeal = Integer.parseInt(reader.readLine());
+                int mHealth = Integer.parseInt(reader.readLine());
 
-                itemsHashMap.put(iName, new Items(iID,iName, iDescription, iLocation,iAttack,iHeal));
+                itemsHashMap.put(iName, new Items(iID,iName, iDescription, iLocation,iAttack,iHeal,mHealth));
             }
         } catch (IOException e) {
             System.out.println("File not found");
@@ -111,7 +112,7 @@ public class Main {
                 for (int i = 0; i < neighbors.length; i++) {
                     neighbors[i] = neighbors[i].trim();
                 }
-                roomsHashMap.put(name, new Rooms(id, name, description, neighbors, itemsHashMap, puzzleHashMap));
+                roomsHashMap.put(id, new Rooms(id, name, description, neighbors, itemsHashMap, puzzleHashMap));
             }
         } catch (IOException e) {
             System.out.println("File not found");
@@ -121,40 +122,40 @@ public class Main {
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-       
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        
-        
-        
-        
-        
+
+
+
+
+
 
         boolean running = true;
 
@@ -185,7 +186,7 @@ public class Main {
                     }
                     temp = temp.trim();
 
-                    System.out.println(roomsHashMap.get(player.getLocation()).getRoomName());
+                    System.out.println(roomsHashMap.get(player.getLocation()).getRoomID());
 
                     player.explore(temp);
                 } else if (command.length == 1) {

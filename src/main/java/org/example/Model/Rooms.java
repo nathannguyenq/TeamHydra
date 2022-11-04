@@ -47,7 +47,7 @@ public class Rooms {
     public void linkItems(HashMap<String, Items> items) {
         for (Map.Entry<String, Items> elt : items.entrySet()) {
 
-            if (elt.getValue().getiLocation().equals(roomName)) {
+            if (elt.getValue().getiLocation().equals(roomID)) {
                 roomItems.put(elt.getKey(), elt.getValue());
             }
         }
@@ -55,7 +55,7 @@ public class Rooms {
 
     public void linkPuzzles(HashMap<String, Puzzle> puzzlelink) {
         for (Map.Entry<String, Puzzle> elt : puzzlelink.entrySet()) {
-            if (elt.getValue().getPuzzleLocation().equals(roomName)) {
+            if (elt.getValue().getPuzzleLocation().equals(roomID)) {
                 puzzleHash.put(elt.getKey(), elt.getValue());
             }
         }
