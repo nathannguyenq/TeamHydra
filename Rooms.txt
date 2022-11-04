@@ -53,7 +53,7 @@ The smell of death fills the air. Hmm - is that cheese as well? You don’t see 
 MTL_1
 Oak Avenue
 What’s left of residential buildings line the street but they’re all shuttered. Seems like the residents are long gone by now. The road stretches for some time to the WEST and the EAST. There is an upgrade kit available in this room.
--,-,-,-,MTL_6,MTL_2
+-,-,-,MTL_0,MTL_6,MTL_2
 MTL_2
 Clinic
 As you come upon the end of the road you spot an abandoned clinic off to the side. You see a pile of bodies on the side of the building. That must be where the pungent stench is coming from.To the EAST there’s the beginning of what’s left of a residential district. To the NORTH crates and a cart can be seen overturned next to the road. Sword upgrade kit is available in this room.
