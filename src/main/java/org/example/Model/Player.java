@@ -18,9 +18,9 @@ public class Player {
 
         String[] temp = current.getNeighbor();
         if (direction.equals("u")) {
-            direction = "ladder up";
+            direction = "ladder-up";
         } else if (direction.equals("d")) {
-            direction = "ladder down";
+            direction = "ladder-down";
         } else if (direction.equals("n")) {
             direction = "north";
         } else if (direction.equals("s")) {
@@ -32,14 +32,14 @@ public class Player {
         }
 
         switch (direction) {
-            case "ladder up":
+            case "ladder-up":
                 if (!temp[0].equals("-")) {
                     location = (temp[0]);
                 } else {
                     System.out.println("No Exit, Please try a different way.\n");
                 }
                 break;
-            case "ladder down":
+            case "ladder-down":
                 if (!temp[1].equals("-")) {
                     location = (temp[1]);
                 } else {
