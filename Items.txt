@@ -5,6 +5,8 @@ SW_3,SW_8,MTL_0,MTL_4,MTL_7
 0
 10
 0
+0
+1
 IT_1
 royal cheese 1
 A royal wedge of cheese. Characterized by it’s smooth, creamy texture and high performance inducing ingredients. valued at 50 HP when consumed.
@@ -12,6 +14,8 @@ CU_1,CU_4
 0
 50
 0
+0
+1
 IT_2
 royal cheese 2
 A royal wedge of cheese. Characterized by it’s smooth, creamy texture and high performance inducing ingredients. valued at 60 HP points when consumed.
@@ -19,6 +23,8 @@ CL_1
 0
 60
 0
+0
+1
 IT_3
 sword
 A sleek and thin needle, perfect for a rat ready to conquer all of europe. Increases strength by 20 points.
@@ -26,6 +32,8 @@ SW_2
 20
 0
 0
+0
+1
 IT_4
 armor
 Armor made from the finest scrapings of the upper midtown alleys. Valued at 50 HP.
@@ -33,6 +41,8 @@ SW_1
 0
 0
 50
+0
+1
 IT_5
 high road key
 A key to unlock the High Road Gate located at the Castle.
@@ -40,6 +50,8 @@ A key to unlock the High Road Gate located at the Castle.
 0
 0
 0
+0
+1
 IT_6
 ricin pouch
 Ricin is a deadly poison derived from castor bean plants.
@@ -47,6 +59,8 @@ Ricin is a deadly poison derived from castor bean plants.
 0
 0
 0
+0
+1
 IT_7
 standard armor upgrade kit 1
 Standard quality armor upgrade
@@ -54,6 +68,8 @@ MTL_1
 0
 0
 20
+0
+1
 IT_8
 sword upgrade kit 2
 Standard quality sword upgrade.
@@ -61,6 +77,8 @@ SW_5
 20
 0
 0
+0
+1
 IT_9
 medium armor upgrade kit 1
 Medium quality armor upgrade.
@@ -68,6 +86,8 @@ MTU_0,MTL_6
 0
 0
 30
+0
+1
 IT_10
 medium sword upgrade kit 2
 Medium quality sword upgrade.
@@ -75,6 +95,8 @@ MTL_2,MTU_3
 30
 0
 0
+0
+1
 IT_11
 high armor upgrade kit 1
 High quality armor upgrade.
@@ -82,6 +104,8 @@ CL_4,CL_2
 0
 0
 50
+0
+1
 IT_12
 high sword upgrade kit 2
 High quality sword upgrade.
@@ -89,6 +113,8 @@ CL_3,CU_2
 50
 0
 0
+0
+1
 IT_13
 official plague report
 A note which reveals the truth of the cause of the plague.
@@ -96,6 +122,8 @@ A note which reveals the truth of the cause of the plague.
 0
 0
 0
+0
+1
 IT_14
 routine physical report
 reveals that the King is in already poor health condition.
@@ -103,6 +131,8 @@ reveals that the King is in already poor health condition.
 0
 0
 0
+0
+1
 IT_15
 skeleton key
 Unlocks door in sewer.
@@ -110,6 +140,8 @@ Unlocks door in sewer.
 0
 0
 0
+0
+1
 IT_16
 merchant key
 Unlocks door in the Sewer Hub.
@@ -117,3 +149,5 @@ Unlocks door in the Sewer Hub.
 0
 0
 0
+0
+1

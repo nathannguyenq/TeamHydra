@@ -62,16 +62,19 @@ public class Rooms {
     }
 
     public void look() {
+        System.out.println(roomName);
+        System.out.println("");
         System.out.println(roomDescription);
+        System.out.println("");
 
         if (roomItems.isEmpty()) {
-            System.out.println("Nothing found.");
+            System.out.print("No Items Found.");
             System.out.println(roomItems);
         } else {
             for (Map.Entry<String, Items> elt : roomItems.entrySet()) {
                 System.out.print(elt.getKey() + ", ");
             }
-            System.out.println(" are the current item(s) in the room.");
+            System.out.println(" are/is the current item(s) in the room.");
         }
 
     }

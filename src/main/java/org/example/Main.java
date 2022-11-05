@@ -101,8 +101,10 @@ public class Main {
                 int iAttack = Integer.parseInt(reader.readLine());
                 int iHeal = Integer.parseInt(reader.readLine());
                 int mHealth = Integer.parseInt(reader.readLine());
+                int iCost = Integer.parseInt(reader.readLine());
+                int iAmount = Integer.parseInt(reader.readLine());
 
-                itemsHashMap.put(iName, new Items(iID,iName, iDescription, iLocation,iAttack,iHeal,mHealth));
+                itemsHashMap.put(iName, new Items(iID,iName, iDescription, iLocation,iAttack,iHeal,mHealth, iCost, iAmount));
             }
         } catch (IOException e) {
             System.out.println("File not found");
@@ -170,9 +172,12 @@ public class Main {
         System.out.println("\t" + "\t" + "#############################");
         System.out.println("\t" + "\t" + "#### Welcome to the game ####");
         System.out.println("\t" + "\t" + "#############################");
+        System.out.println("\t" + "MOVE WITH (N,E,S,W)" + " or you can quit (q)");
         System.out.println("\n");
         System.out.println("----------------------------------------");
-        System.out.println("Which way do you want to go? (N,E,S,W)" + " or you can quit (q)");
+        System.out.println(roomsHashMap.get(player.getLocation()).getRoomName());
+        System.out.println("");
+        System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
         GAME:
         while (running) {
             String input = scanner.nextLine();
@@ -185,23 +190,12 @@ public class Main {
             }
             else if (command[0].equals("explore"))
             {
-                if (command.length >= 2) {
-                    String temp = "";
-
-                    for (int i = 1; i < command.length; i++) {
-                        temp = temp + command[i] + "";
-                    }
-                    temp = temp.trim();
-
-                    System.out.println(roomsHashMap.get(player.getLocation()).getRoomName());
-
-                    player.explore(temp);
-                } else if (command.length == 1) {
+                if (command.length == 1) {
                     player.explore(roomsHashMap);
                 } else {
-                    System.out.println(command[1] + " is an Invalid Command");
+                    System.out.println("explore " + command[1] + " is an Invalid Command");
                 }
-            } else if (command[0].equals("pickup")) {
+            } else if (command[0].equals("take")) {
                 if (command.length >= 2) {
                     String temp = "";
                     for (int i = 1; i < command.length; i++) {
@@ -215,7 +209,7 @@ public class Main {
                     System.out.println("");
                     System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
                 }
-            } else if (command[0].equals("inspect")) {
+            } else if (command[0].equals("observe")) {
                 if (command.length >= 2) {
                     String temp = "";
 
@@ -228,7 +222,7 @@ public class Main {
                 } else {
                     System.out.println(command[1] + " is an Invalid Command");
                 }
-            } else if (command[0].equals("drop")) {
+            } else if (command[0].equals("remove")) {
                 if (command.length >= 2) {
                     String temp = "";
                     for (int i = 1; i < command.length; i++) {

@@ -1,6 +1,6 @@
 SW_0
 Sewer Entrance
-The room is dark and it is hard to see your way around. However, through the blackness, you manage to eke out the figure of what seems to be a doorway to the EAST.
+The room is dark and it is hard to see your way around. However, through the blackness, you manage to make out the figure of what seems to be a doorway to the EAST.
 -,-,-,-,SW_1,-
 SW_1
 Sewer Walkway: WEST

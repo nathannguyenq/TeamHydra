@@ -13,8 +13,10 @@ public class Items {
 
     private int iHeal;
     private int mHealth;
+    private int iCost;
+    private int iAmount;
 
-    public Items(String iId, String iName, String iDescription, ArrayList<String> iLocation, int iAttack, int iHeal, int mHealth) {
+    public Items(String iId, String iName, String iDescription, ArrayList<String> iLocation, int iAttack, int iHeal, int mHealth, int iCost, int iAmount) {
         this.iID = iId;
         this.iName = iName;
         this.iDescription = iDescription;
@@ -22,6 +24,8 @@ public class Items {
         this.iAttack = iAttack;
         this.iHeal = iHeal;
         this.mHealth = mHealth;
+        this.iCost = iCost;
+        this.iAmount = iAmount;
 
     }
 
