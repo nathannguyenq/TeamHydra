@@ -5,11 +5,14 @@ import java.util.Map;
 
 public class Player {
     private static String location;
-
     private HashMap<String, Items> playerInventory = new HashMap<>();
+    private int plyhealth;
+    private int plyattack;
 
-    public Player() {
+    public Player(Integer health, Integer attack) {
         location = "SW_0";
+        this.plyhealth = health;
+        this.plyattack = attack;
     }
 
     public void move(String direction, HashMap<String, Rooms> roomsHashMap) {

@@ -1,6 +1,10 @@
 package org.example.Model;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Monster {
 
@@ -82,6 +86,42 @@ public class Monster {
 
     public int getAttackDamage() {
         return AttackDamage;
+    }
+
+    public static HashMap<String, Items> createMonsters() {
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("Monsters.txt"));
+            String line;
+            HashMap<String, Monster> mHash = new HashMap<>();
+            while ((line = reader.readLine()) != null) {
+
+                ArrayList<String> temp = new ArrayList<>();
+
+                String mName = line;
+                String mDescription = reader.readLine();
+                int pLocation = Integer.parseInt(reader.readLine());
+                String[] neighbors = reader.readLine().split(" ");
+                for (int i = 0; i < neighbors.length; i++) {
+                    neighbors[i] = neighbors[i].trim();
+                    String tem = neighbors[i];
+                    temp.add(tem);
+                }
+                String pDescription = reader.readLine();
+                String pAnswer = reader.readLine();
+                String pnswer = reader.readLine();
+                int pLocion = Integer.parseInt(reader.readLine());
+                int pcation = Integer.parseInt(reader.readLine());
+
+                mHash.put(mName, new Monster(mName,mDescription,pLocation,temp,pDescription,pAnswer,pnswer,pLocion,pcation));
+//                System.out.print(MonsterHashMap.get(mName).getName());
+//                System.out.print(" = ");
+//                System.out.println(MonsterHashMap.get(mName).getGoldReward());
+            }
+        } catch (IOException e) {
+            System.out.println("File not found");
+        }
+        return null;
     }
 }
 	

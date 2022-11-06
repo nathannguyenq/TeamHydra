@@ -1,5 +1,11 @@
 package org.example.Model;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Puzzle {
     private String puzzleName;
     private String puzzleID;
@@ -41,4 +47,26 @@ public class Puzzle {
         return puzzleAnswer;
     }
 
+    public static HashMap<String, Puzzle> createPuzzles() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("puzzle.txt"));
+            String line;
+            HashMap<String, Puzzle> pHash = new HashMap<>();
+            while ((line = reader.readLine()) != null) {
+
+                String pName = line;
+                String pID = reader.readLine();
+                String pLocation = reader.readLine();
+                int pAttempts = Integer.parseInt(reader.readLine());
+                String pDescription = reader.readLine();
+                String pAnswer = reader.readLine();
+
+                pHash.put(pLocation, new Puzzle(pName, pID, pLocation, pAttempts, pDescription, pAnswer));
+            }
+            return pHash;
+        } catch (IOException e) {
+            System.out.println("File not found");
+        }
+        return null;
+    }
 }
