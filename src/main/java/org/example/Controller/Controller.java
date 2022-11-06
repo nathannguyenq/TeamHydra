@@ -102,7 +102,8 @@ public class Controller {
                         tempAttempt--;
                         System.out.println("Wrong Answer Attempt(s) left: " + tempAttempt + '\n');
 
-                    } else {
+                    }
+                    else {
                         System.out.println("Puzzle Completed" + '\n');
                         pStorage.add(roomsHashMap.get(player.getLocation()).getRoomID());
 
