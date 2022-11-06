@@ -1,17 +1,14 @@
 package org.example;
 
-import org.example.Model.Items;
-import org.example.Model.Player;
-import org.example.Model.Puzzle;
-import org.example.Model.Rooms;
+import org.example.Model.*;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-
 
     public static void main(String[] args) {
 
@@ -20,6 +17,7 @@ public class Main {
         HashMap<String, Items> itemsHashMap = new HashMap<>();
         HashMap<String, Puzzle> puzzleHashMap = new HashMap<>();
         HashMap<String, Rooms> roomsHashMap = new HashMap<>();
+        HashMap<String, NPCs> dialogueHashMap = new HashMap<>();
         ArrayList<String> pStorage = new ArrayList<>();
 
         ArrayList<String> flag = new ArrayList<>();
@@ -77,6 +75,50 @@ public class Main {
             System.out.println("File not found");
         }
 
+        try {
+            BufferedReader bf = new BufferedReader(new FileReader("Dialogue.txt"));
+            String hub1Name = bf.readLine();
+            String npc1Name = bf.readLine();
+            List<String> QNormalDial = new ArrayList<String>();
+            String line = bf.readLine();
+            while (line != null && !line.contains("END")) {
+                QNormalDial.add(line);
+                line = bf.readLine();
+            }
+            List<String> QSpecDial = new ArrayList<String>();
+            String line1 = bf.readLine();
+            while (line1 != null && !line1.contains("END1")) {
+                QSpecDial.add(line1);
+                line1 = bf.readLine();
+            }
+            List<String> ShopDial = new ArrayList<String>();
+            String line2 = bf.readLine();
+            while (line2 != null && !line2.contains("END2")){
+                ShopDial.add(line2);
+                line2 = bf.readLine();
+            }
+            String hub2Name = bf.readLine();
+            String npc2Name = bf.readLine();
+            List<String> RNormalDial = new ArrayList<String>();
+            String line3 = bf.readLine();
+            while (line3 != null && !line3.contains("END3")){
+                RNormalDial.add(line3);
+                line3 = bf.readLine();
+            }
+
+            dialogueHashMap.put(hub2Name, new NPCs(npc2Name,RNormalDial,ShopDial));
+            dialogueHashMap.put(hub1Name, new NPCs(npc1Name, QNormalDial, QSpecDial, ShopDial));
+
+
+            System.out.println(dialogueHashMap.entrySet());
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
         boolean running = true;
 
         System.out.println("\t" + "\t" + "#############################");
@@ -96,7 +138,9 @@ public class Main {
             {
                 break;
             }
-            else if (command[0].equals("explore"))
+
+
+            else if (command[0].equalsIgnoreCase("observe"))
             {
                 if (command.length >= 2) {
                     String temp = "";
@@ -108,13 +152,15 @@ public class Main {
 
                     System.out.println(roomsHashMap.get(player.getLocation()).getRoomName());
 
-                    player.explore(temp);
+                    player.observe(temp);
                 } else if (command.length == 1) {
-                    player.explore(roomsHashMap);
+                    player.observe(roomsHashMap);
                 } else {
                     System.out.println(command[1] + " is an Invalid Command");
                 }
-            } else if (command[0].equals("pickup")) {
+
+
+            } else if (command[0].equalsIgnoreCase("take")) {
                 if (command.length >= 2) {
                     String temp = "";
                     for (int i = 1; i < command.length; i++) {
@@ -122,44 +168,109 @@ public class Main {
                     }
                     temp = temp.trim();
 
-                    player.add(temp, roomsHashMap);
+                    player.take(temp, roomsHashMap);
                 } else {
                     System.out.println("!# Invalid Command #!");
                     System.out.println("");
                     System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
                 }
-            } else if (command[0].equals("inspect")) {
-                if (command.length >= 2) {
-                    String temp = "";
 
-                    for (int i = 1; i < command.length; i++) {
-                        temp = temp + command[i] + "";
-                    }
-                    temp = temp.trim();
-
-                    player.explore(temp);
-                } else {
-                    System.out.println(command[1] + " is an Invalid Command");
-                }
-            } else if (command[0].equals("drop")) {
+            } else if (command[0].equalsIgnoreCase("equip")) {
                 if (command.length >= 2) {
                     String temp = "";
                     for (int i = 1; i < command.length; i++) {
                         temp = temp + command[i] + " ";
                     }
                     temp = temp.trim();
-                    player.drop(temp, roomsHashMap);
+
+                    player.equip(temp, roomsHashMap);
+                } else {
+                    System.out.println("!# Invalid Command #!");
+                    System.out.println("");
+                    System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
+                }
+
+            } else if (command[0].equalsIgnoreCase("use")) {
+                if (command.length >= 2) {
+                    String temp = "";
+                    for (int i = 1; i < command.length; i++) {
+                        temp = temp + command[i] + " ";
+                    }
+                    temp = temp.trim();
+
+                    player.use(temp, roomsHashMap);
+                } else {
+                    System.out.println("!# Invalid Command #!");
+                    System.out.println("");
+                    System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
+                }
+
+            } else if (command[0].equalsIgnoreCase("wear")) {
+                if (command.length >= 2) {
+                    String temp = "";
+                    for (int i = 1; i < command.length; i++) {
+                        temp = temp + command[i] + " ";
+                    }
+                    temp = temp.trim();
+
+                    player.wear(temp, roomsHashMap);
+                } else {
+                    System.out.println("!# Invalid Command #!");
+                    System.out.println("");
+                    System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
+                }
+
+            } else if (command[0].equalsIgnoreCase("consume")) {
+                if (command.length >= 2) {
+                    String temp = "";
+                    for (int i = 1; i < command.length; i++) {
+                        temp = temp + command[i] + " ";
+                    }
+                    temp = temp.trim();
+
+                    player.consume(temp, roomsHashMap);
+                } else {
+                    System.out.println("!# Invalid Command #!");
+                    System.out.println("");
+                    System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
+                }
+
+
+//            } else if (command[0].equalsIgnoreCase("inspect")) {
+//                if (command.length >= 2) {
+//                    String temp = "";
+//
+//                    for (int i = 1; i < command.length; i++) {
+//                        temp = temp + command[i] + "";
+//                    }
+//                    temp = temp.trim();
+//
+//                    player.observe(temp);
+//                } else {
+//                    System.out.println(command[1] + " is an Invalid Command");
+//                }
+
+            } else if (command[0].equalsIgnoreCase("remove")) {
+                if (command.length >= 2) {
+                    String temp = "";
+                    for (int i = 1; i < command.length; i++) {
+                        temp = temp + command[i] + " ";
+                    }
+                    temp = temp.trim();
+                    player.remove(temp, roomsHashMap);
 
 
                 } else {
                     System.out.println(command[1] + " is an Invalid Command");
                 }
+
             } else if (command.length == 1) {
-                if (command[0].equals("inventory")) {
+                if (command[0].equalsIgnoreCase("inventory")) {
                     player.getInventory();
                 }
             }
-            if (command[0].equals("north") || command[0].equals("south") || command[0].equals("east") || command[0].equals("west") || command[0].equals("n") || command[0].equals("s") || command[0].equals("e") || command[0].equals("w"))
+            if (command[0].equalsIgnoreCase("north") || command[0].equalsIgnoreCase("south") || command[0].equalsIgnoreCase("east")
+                    || command[0].equalsIgnoreCase("west") || command[0].equalsIgnoreCase("n") || command[0].equalsIgnoreCase("s") || command[0].equalsIgnoreCase("e") || command[0].equalsIgnoreCase("w"))
             {
                 player.move(command[0], roomsHashMap);
                 if (roomsHashMap.get(player.getLocation()).getPuzzleHashMap().containsKey(player.getLocation())) {

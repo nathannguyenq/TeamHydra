@@ -1,10 +1,11 @@
 package org.example.Model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Rooms {
+public class Rooms implements Serializable {
 
     private String roomID;
     private String roomName = "";
@@ -12,7 +13,7 @@ public class Rooms {
     private String[] neighbor;
 
     private HashMap<String, Items> roomItems = new HashMap<>();
-    private HashMap<String, Puzzle> puzzleHash = new HashMap<String, Puzzle>();
+    private HashMap<String, Puzzle> puzzleHash = new HashMap<>();
 
 
     public Rooms(String id, String roomName, String roomDescription, String[] neighbor, HashMap<String, Items> items, HashMap<String, Puzzle> puzzles) {

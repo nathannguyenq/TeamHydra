@@ -1,6 +1,8 @@
 package org.example.Model;
 
-public class Puzzle {
+import java.io.Serializable;
+
+public class Puzzle implements Serializable {
     private String puzzleName;
     private String puzzleID;
     private String puzzleLocation;

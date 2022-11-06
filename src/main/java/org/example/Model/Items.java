@@ -1,10 +1,11 @@
 package org.example.Model;
 
-public class Items {
+import java.io.Serializable;
+
+public class Items implements Serializable {
 
     private String iName;
     private String iDescription;
-
     private String iLocation;
 
     public Items(String iName, String iDescription, String iLocation) {

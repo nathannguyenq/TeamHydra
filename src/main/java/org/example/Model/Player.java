@@ -1,11 +1,11 @@
 package org.example.Model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Player {
+public class Player implements Serializable {
     private static String location;
-
     private HashMap<String, Items> playerInventory = new HashMap<>();
 
     public Player() {
@@ -64,7 +64,7 @@ public class Player {
 
     }
 
-    public void add(String item, HashMap<String, Rooms> rooms) {
+    public void take(String item, HashMap<String, Rooms> rooms) {
         Rooms current = rooms.get(location);
 
         Items temp = null;
@@ -80,7 +80,71 @@ public class Player {
         }
     }
 
-    public void drop(String item, HashMap<String, Rooms> rooms) {
+    public void equip(String item, HashMap<String, Rooms> rooms){
+        Rooms current = rooms.get(location);
+
+        Items temp = null;
+
+        if (current.getInventory().containsKey(item)) {
+            temp = current.getInventory().get(item);
+
+            current.getInventory().remove(item);
+            playerInventory.put(temp.getiName(), temp);
+            System.out.println(item + " is now equipped");
+        } else {
+            System.out.println("Sorry, " + item + " is not to equip.");
+        }
+    }
+
+    public void use(String item, HashMap<String, Rooms> rooms){
+        Rooms current = rooms.get(location);
+
+        Items temp = null;
+
+        if (current.getInventory().containsKey(item)) {
+            temp = current.getInventory().get(item);
+
+            current.getInventory().remove(item);
+            playerInventory.put(temp.getiName(), temp);
+            System.out.println(item + " is now being used");
+        } else {
+            System.out.println("Sorry, " + item + " is not for use here.");
+        }
+    }
+
+    public void consume(String item, HashMap<String, Rooms> rooms){
+        Rooms current = rooms.get(location);
+
+        Items temp = null;
+
+        if (current.getInventory().containsKey(item)) {
+            temp = current.getInventory().get(item);
+
+            current.getInventory().remove(item);
+            playerInventory.put(temp.getiName(), temp);
+            System.out.println(item + " is now consumed");
+        } else {
+            System.out.println("Sorry, " + item + " is not for use here.");
+        }
+    }
+
+    public void wear(String item, HashMap<String, Rooms> rooms){
+        Rooms current = rooms.get(location);
+
+        Items temp = null;
+
+        if (current.getInventory().containsKey(item)) {
+            temp = current.getInventory().get(item);
+
+            current.getInventory().remove(item);
+            playerInventory.put(temp.getiName(), temp);
+            System.out.println(item + " is now worn");
+        } else {
+            System.out.println("Sorry, " + item + " is not for use here.");
+        }
+    }
+
+    public void remove(String item, HashMap<String, Rooms> rooms) {
         Items temp = null;
 
         if (playerInventory.containsKey(item)) {
@@ -110,11 +174,11 @@ public class Player {
         return location;
     }
 
-    public void explore(String item) {
+    public void observe(String item) {
         System.out.println(playerInventory.get(item).getiDescription());
     }
 
-    public void explore(HashMap<String, Rooms> rooms) {
+    public void observe(HashMap<String, Rooms> rooms) {
         rooms.get(location).look();
     }
 
