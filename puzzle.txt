@@ -1,7 +1,7 @@
-Prison Maze Puzzle  // #1Puzzle Name
-PZ_0                // #2 Puzzle id
-SW_4                // #3 Room in which the Puzzle will be found
-3                   // #4 number of attempts
+Prison Maze Puzzle
+PZ_0
+SW_4
+3
 An elaborate multipathed puzzle where the player has to find the exit in a maze by turning right // #5description
 right, left, left, right, left, right  //#6 correct answers
 Cipher Puzzle
