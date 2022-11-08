@@ -25,22 +25,22 @@ public class Controller {
     HashMap<String, Puzzle> puzzleHashMap = Puzzle.createPuzzles();
 
     HashMap<String, Monster> monsterHashMap = new HashMap<>();
-    HashMap<String, Rooms> roomsHashMap = Rooms.createRooms(itemsHashMap,puzzleHashMap,monsterHashMap);
+    HashMap<String, Rooms> roomsHashMap = Rooms.createRooms(itemsHashMap, puzzleHashMap, monsterHashMap);
+    String currRoom = "";
+    String prevRoom = "";
 
 
     public static void main(String[] args) {
     }
+
     public void runGame() {
         String input = scanner.nextLine();
         input = input.toLowerCase();
         String[] command = input.split(" ");
 
-        if (command[0].equals("q") || command[0].equals("quit"))
-        {
+        if (command[0].equals("q") || command[0].equals("quit")) {
 
-        }
-        else if (command[0].equals("explore"))
-        {
+        } else if (command[0].equals("explore")) {
             if (command.length == 1) {
                 player.explore(roomsHashMap);
             } else {
@@ -89,8 +89,8 @@ public class Controller {
                 player.getInventory();
             }
         }
-        if (command[0].equals("ladder-up") || command[0].equals("ladder-down") || command[0].equals("north") || command[0].equals("south") || command[0].equals("east") || command[0].equals("west") || command[0].equals("u") ||command[0].equals("d") || command[0].equals("n") || command[0].equals("s") || command[0].equals("e") || command[0].equals("w"))
-        {
+        String currentLocation = player.getLocation();
+        if (command[0].equals("ladder-up") || command[0].equals("ladder-down") || command[0].equals("north") || command[0].equals("south") || command[0].equals("east") || command[0].equals("west") || command[0].equals("u") || command[0].equals("d") || command[0].equals("n") || command[0].equals("s") || command[0].equals("e") || command[0].equals("w")) {
             player.move(command[0], roomsHashMap);
             if (roomsHashMap.get(player.getLocation()).getPuzzleHashMap().containsKey(player.getLocation())) {
                 tempAttempt = roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleAttempts();
@@ -110,17 +110,55 @@ public class Controller {
 
                 }
             }
-            System.out.print(roomsHashMap.get(player.getLocation()).getRoomName());
-            if (!flag.contains(roomsHashMap.get(player.getLocation()).getRoomID())) {
-                view.notVisited(str);
-
-                flag.add((roomsHashMap.get(player.getLocation()).getRoomID()));
-            } else {
-                view.visited(str);
-
+            if (roomsHashMap.get(player.getLocation()).getLocked() == false) {
+                prevRoom = currRoom;
+                currRoom = player.getLocation();
             }
-            System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
+            if (roomsHashMap.get(player.getLocation()).getLocked() == true) {
+                String str2 = roomsHashMap.get(player.getLocation()).getLockedRequirement();
+                while (roomsHashMap.get(player.getLocation()).getLocked() == true) {
+                    System.out.println(roomsHashMap.get(player.getLocation()).getLockedDescription());
+                    view.leave(str);
+                    view.useItem(str);
+                    System.out.print(str2);
+                    System.out.println();
+                    String lockInput = scanner.nextLine();
+                    lockInput = lockInput.toLowerCase();
+                    String[] command2 = lockInput.split(" ");
+                    if (lockInput.equals("leave")) {
+                        player.setLocation(currRoom);
+                    } else if (command2[0].equals("use") && player.getPlayerInventory().containsKey(roomsHashMap.get(player.getLocation()).getLockedRequirement())) {
+                        if (command2.length >= 2) {
+                            String temp = "";
+                            for (int i = 1; i < command2.length; i++) {
+                                temp = temp + command2[i] + " ";
+                            }
+                            temp = temp.trim();
+                            player.use(temp, player.getPlayerInventory());
+                            roomsHashMap.get(player.getLocation()).setLocked(false);
+
+
+                        } else {
+                            view.invalid(str);
+                        }
+
+                    }
+                }
+            }
+
+                System.out.println(roomsHashMap.get(player.getLocation()).getRoomName());
+                if (!flag.contains(roomsHashMap.get(player.getLocation()).getRoomID())) {
+                    view.notVisited(str);
+
+                    flag.add((roomsHashMap.get(player.getLocation()).getRoomID()));
+                } else {
+                    view.visited(str);
+
+                }
+                System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
+
         }
+
     }
 }
 

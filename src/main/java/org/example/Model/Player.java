@@ -131,6 +131,10 @@ public class Player {
         return location;
     }
 
+    public static void setLocation(String location) {
+        Player.location = location;
+    }
+
     public void explore(String item) {
         System.out.println(playerInventory.get(item).getiDescription());
     }
@@ -139,4 +143,21 @@ public class Player {
         rooms.get(location).look();
     }
 
+    public HashMap<String, Items> getPlayerInventory() {
+        return playerInventory;
+    }
+
+    public void use(String itemName, Map<String,Items> playerInventory) {
+        Items temp = null;
+
+        if (playerInventory.containsKey(itemName)) {
+            temp = playerInventory.get(itemName);
+            playerInventory.remove(itemName);
+
+            System.out.println("You unlocked the room");
+        } else {
+            System.out.println("You don't have " + itemName + " yet.");
+        }
+
+    }
 }

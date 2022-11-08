@@ -12,19 +12,26 @@ public class Rooms {
 
     private String roomID;
     private String roomName = "";
+    private boolean locked = false;
     private String roomDescription = "";
+    private String lockedDescription = "";
     private String[] neighbor;
+    private String lockedRequirement = "";
+
 
     private HashMap<String, Items> itemHash = new HashMap<>();
     private HashMap<String, Puzzle> puzzleHash = new HashMap<>();
     private HashMap<String, Monster> monsterHash = new HashMap<>();
 
 
-    public Rooms(String id, String roomName, String roomDescription, String[] neighbor, HashMap<String, Items> items, HashMap<String, Puzzle> puzzles,HashMap<String, Monster> monsters) {
+    public Rooms(String id, String roomName, boolean locked, String roomDescription, String lockedDescription, String[] neighbor, String lockedRequirement, HashMap<String, Items> items, HashMap<String, Puzzle> puzzles,HashMap<String, Monster> monsters) {
         this.roomID = id;
         this.roomName = roomName;
+        this.locked = locked;
         this.roomDescription = roomDescription;
+        this.lockedDescription = lockedDescription;
         this.neighbor = neighbor;
+        this.lockedRequirement = lockedRequirement;
 
         linkItems(items);
         linkPuzzles(puzzles);
@@ -43,12 +50,24 @@ public class Rooms {
     public String getRoomDescription() {
         return roomDescription;
     }
+    public String getLockedDescription() {
+        return lockedDescription;
+    }
+    public boolean getLocked() {
+        return locked;
+    }
 
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
 
     public String[] getNeighbor() {
         return neighbor;
     }
 
+    public String getLockedRequirement() {
+        return lockedRequirement;
+    }
 
     public void linkItems(HashMap<String, Items> items) {
         for (Map.Entry<String, Items> elt : items.entrySet()) {
@@ -107,12 +126,15 @@ public class Rooms {
 
                 String id = line;
                 String name = reader.readLine();
+                boolean  locked = Boolean.parseBoolean(reader.readLine());
                 String description = reader.readLine();
+                String lockedDescription = reader.readLine();
                 String[] neighbors = reader.readLine().split(",");
                 for (int i = 0; i < neighbors.length; i++) {
                     neighbors[i] = neighbors[i].trim();
                 }
-                rHash.put(id, new Rooms(id, name, description, neighbors, itemHash, puzzleHash, monsterHash));
+                String lockedRequirement = reader.readLine();
+                rHash.put(id, new Rooms(id, name, locked, description, lockedDescription, neighbors, lockedRequirement, itemHash, puzzleHash, monsterHash));
             }
             return rHash;
         } catch (IOException e) {
@@ -120,4 +142,5 @@ public class Rooms {
         }
         return null;
     }
+
 }

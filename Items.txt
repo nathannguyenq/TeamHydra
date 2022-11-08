@@ -106,7 +106,7 @@ reveals that the King is in already poor health condition.
 IT_15
 skeleton key
 Unlocks door in sewer.
--
+SW_2
 0
 0
 0
