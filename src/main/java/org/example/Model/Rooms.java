@@ -1,9 +1,14 @@
 package org.example.Model;
 
+<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
+=======
+import java.io.Serializable;
+import java.util.Arrays;
+>>>>>>> f901ffc4fd3ad59ccd2a3f31cb88723bd9e25ebd
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +20,13 @@ public class Rooms implements Serializable {
     private String roomDescription = "";
     private String lockedDescription = "";
     private String[] neighbor;
+<<<<<<< HEAD
     private String lockedRequirement = "";
+=======
+
+    private HashMap<String, Items> roomItems = new HashMap<>();
+    private HashMap<String, Puzzle> puzzleHash = new HashMap<>();
+>>>>>>> f901ffc4fd3ad59ccd2a3f31cb88723bd9e25ebd
 
 
     private HashMap<String, Items> itemHash = new HashMap<>();

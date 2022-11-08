@@ -1,22 +1,32 @@
 package org.example.Model;
 
+<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+=======
+import java.io.Serializable;
+
+public class Items implements Serializable {
+>>>>>>> f901ffc4fd3ad59ccd2a3f31cb88723bd9e25ebd
 
 public class Items implements Serializable {
 
     private String iID;
     private String iName;
     private String iDescription;
+<<<<<<< HEAD
     private ArrayList<String> iLocation;
 
     private int iAttack;
     private int iHeal;
     private int mHealth;
+=======
+    private String iLocation;
+>>>>>>> f901ffc4fd3ad59ccd2a3f31cb88723bd9e25ebd
 
 
     public Items(String iId, String iName, String iDescription,ArrayList<String> iLocation, int iAttack, int iHeal, int mHealth) {
