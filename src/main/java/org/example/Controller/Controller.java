@@ -1,10 +1,6 @@
 package org.example.Controller;
 
-import org.example.Model.Items;
-import org.example.Model.Monster;
-import org.example.Model.Player;
-import org.example.Model.Puzzle;
-import org.example.Model.Rooms;
+import org.example.Model.*;
 import org.example.View.View;
 
 import java.io.*;
@@ -12,7 +8,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Controller {
+import static org.example.Main.loadGame;
+import static org.example.Main.saveGame;
+
+public class Controller implements Serializable{
     Scanner scanner = new Scanner(System.in);
     View view = new View();
     Player player = new Player(100, 50);
@@ -21,11 +20,12 @@ public class Controller {
     ArrayList<String> flag = new ArrayList<>();
     int tempAttempt;
 
+    HashMap<String, NPCs> npcHashMap = NPCs.createNPCs();
     HashMap<String, Items> itemsHashMap = Items.createItems();
     HashMap<String, Puzzle> puzzleHashMap = Puzzle.createPuzzles();
 
     HashMap<String, Monster> monsterHashMap = new HashMap<>();
-    HashMap<String, Rooms> roomsHashMap = Rooms.createRooms(itemsHashMap, puzzleHashMap, monsterHashMap);
+    HashMap<String, Rooms> roomsHashMap = Rooms.createRooms(itemsHashMap, puzzleHashMap, monsterHashMap, npcHashMap);
     String currRoom = "";
     String prevRoom = "";
 
@@ -89,6 +89,22 @@ public class Controller {
                 player.getInventory();
             }
         }
+
+     else if (command[0].equals("talk")) {
+        if (command.length >= 2) {
+            String temp = "";
+            for (int i = 1; i < command.length; i++) {
+                temp = temp + command[i] + " ";
+            }
+            temp = temp.trim();
+            player.talk(temp,npcHashMap);
+
+
+        } else {
+            view.invalid(str);
+        }
+    }
+
         String currentLocation = player.getLocation();
         if (command[0].equals("ladder-up") || command[0].equals("ladder-down") || command[0].equals("north") || command[0].equals("south") || command[0].equals("east") || command[0].equals("west") || command[0].equals("u") || command[0].equals("d") || command[0].equals("n") || command[0].equals("s") || command[0].equals("e") || command[0].equals("w")) {
             player.move(command[0], roomsHashMap);
@@ -146,19 +162,20 @@ public class Controller {
                 }
             }
 
-                System.out.println(roomsHashMap.get(player.getLocation()).getRoomName());
-                if (!flag.contains(roomsHashMap.get(player.getLocation()).getRoomID())) {
-                    view.notVisited(str);
+            System.out.println(roomsHashMap.get(player.getLocation()).getRoomName());
+            if (!flag.contains(roomsHashMap.get(player.getLocation()).getRoomID())) {
+                view.notVisited(str);
 
-                    flag.add((roomsHashMap.get(player.getLocation()).getRoomID()));
-                } else {
-                    view.visited(str);
+                flag.add((roomsHashMap.get(player.getLocation()).getRoomID()));
+            } else {
+                view.visited(str);
 
-                }
-                System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
+            }
+            System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
 
         }
 
     }
+
 }
 

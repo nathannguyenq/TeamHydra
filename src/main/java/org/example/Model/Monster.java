@@ -3,10 +3,11 @@ package org.example.Model;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Monster {
+public class Monster implements Serializable {
 
     private String name;
     private String mDescription;

@@ -3,12 +3,11 @@ package org.example.Model;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Rooms {
+public class Rooms implements Serializable {
 
     private String roomID;
     private String roomName = "";
@@ -22,9 +21,10 @@ public class Rooms {
     private HashMap<String, Items> itemHash = new HashMap<>();
     private HashMap<String, Puzzle> puzzleHash = new HashMap<>();
     private HashMap<String, Monster> monsterHash = new HashMap<>();
+    private HashMap<String, NPCs> NPCHash = new HashMap<>();
 
 
-    public Rooms(String id, String roomName, boolean locked, String roomDescription, String lockedDescription, String[] neighbor, String lockedRequirement, HashMap<String, Items> items, HashMap<String, Puzzle> puzzles,HashMap<String, Monster> monsters) {
+    public Rooms(String id, String roomName, boolean locked, String roomDescription, String lockedDescription, String[] neighbor, String lockedRequirement, HashMap<String, Items> items, HashMap<String, Puzzle> puzzles,HashMap<String, Monster> monsters, HashMap<String, NPCs> NPC) {
         this.roomID = id;
         this.roomName = roomName;
         this.locked = locked;
@@ -36,6 +36,7 @@ public class Rooms {
         linkItems(items);
         linkPuzzles(puzzles);
         linkMonsters(monsters);
+        linkNPC(NPC);
     }
 
     public String getRoomID() {
@@ -45,7 +46,6 @@ public class Rooms {
     public String getRoomName() {
         return roomName;
     }
-
 
     public String getRoomDescription() {
         return roomDescription;
@@ -94,6 +94,14 @@ public class Rooms {
         }
     }
 
+    public void linkNPC(HashMap<String, NPCs> NPCLink) {
+        for (Map.Entry<String, NPCs> elt : NPCLink.entrySet()) {
+            if (elt.getValue().getNpcLocation().equals(roomID)) {
+                NPCHash.put(elt.getKey(), elt.getValue());
+            }
+        }
+    }
+
     public void look() {
         System.out.println(roomDescription);
 
@@ -117,7 +125,8 @@ public class Rooms {
         return puzzleHash;
     }
 
-    public static HashMap<String, Rooms> createRooms(HashMap<String, Items> itemHash , HashMap<String, Puzzle> puzzleHash,HashMap<String, Monster> monsterHash) {
+
+    public static HashMap<String, Rooms> createRooms(HashMap<String, Items> itemHash , HashMap<String, Puzzle> puzzleHash,HashMap<String, Monster> monsterHash, HashMap<String, NPCs> NPCHash) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("Rooms.txt"));
             String line;
@@ -134,7 +143,7 @@ public class Rooms {
                     neighbors[i] = neighbors[i].trim();
                 }
                 String lockedRequirement = reader.readLine();
-                rHash.put(id, new Rooms(id, name, locked, description, lockedDescription, neighbors, lockedRequirement, itemHash, puzzleHash, monsterHash));
+                rHash.put(id, new Rooms(id, name, locked, description, lockedDescription, neighbors, lockedRequirement, itemHash, puzzleHash, monsterHash, NPCHash));
             }
             return rHash;
         } catch (IOException e) {

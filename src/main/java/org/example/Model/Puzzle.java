@@ -3,10 +3,11 @@ package org.example.Model;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Puzzle {
+public class Puzzle implements Serializable {
     private String puzzleName;
     private String puzzleID;
     private String puzzleLocation;

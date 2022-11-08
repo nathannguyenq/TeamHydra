@@ -1,9 +1,10 @@
 package org.example.Model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Player {
+public class Player implements Serializable {
     private static String location;
     private HashMap<String, Items> playerInventory = new HashMap<>();
     private int plyhealth;
@@ -115,6 +116,10 @@ public class Player {
         } else {
             System.out.println("You don't have " + item + " yet.");
         }
+    }
+
+    public void talk(String name, HashMap<String, NPCs> NPC){
+
     }
 
     public void getInventory() {

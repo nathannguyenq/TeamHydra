@@ -1,6 +1,8 @@
 package org.example.View;
 
-public class View {
+import java.io.Serializable;
+
+public class View implements Serializable {
     public void chooseDirection (String str) {
         System.out.println("Which way would you like to go? (N,E,S,W)");
     }
