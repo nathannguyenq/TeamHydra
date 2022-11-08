@@ -19,10 +19,16 @@ public class View {
     }
 
     public void visited(String str) {
-        System.out.println(" \"You have been here before\"" + '\n');
+        System.out.println("[You have been here before]" + '\n');
     }
 
     public void notVisited(String str) {
-        System.out.println(" never been here" + '\n');
+        System.out.println("[Never been here]" + '\n');
+    }
+    public void leave(String str) {
+        System.out.println("\"leave\" to go back");
+    }
+    public void useItem(String str) {
+        System.out.print("Or use: ");
     }
 }
