@@ -1,6 +1,78 @@
-Add
-1
-SW_3
+Prison Maze Puzzle
+PZ_0
+SW_4
 3
-What is 1 + 1?
-2
+An elaborate multipathed puzzle where the player has to find the exit in a maze by turning right // #5description
+right, left, left, right, left, right  //#6 correct answers
+Cipher Puzzle
+PZ_1
+SW_5
+3
+You see a sign it says A = 1, B = 2, C = 3, etc. say the word from 1815451420 and the area will change.
+rodent
+Switch Puzzle
+PZ_2
+SW_8
+3
+You see a set of 4 switches, they could be useful for something. Try pulling some of the switches
+Pull switch 1, Pull switch 4,Leave switch 2,Leave switch 3
+Riddle Puzzle 1
+PZ_3_A
+SW_9
+3
+An ominous figure looms over you, it asks:“I am better than god, more evil than the devil, the rich people want me, the poor people have me, and if u eat me I’ll die. What am I?”
+Nothing
+Riddle Puzzle 2
+PZ_3_B
+SW_10
+3
+A weak shoddy figure raises it’s head and asks: You measure my life in hours and I serve you by expiring. I’m quick when I’m thin and slow when I’m fat. The wind is my enemy. What am I?
+Candle
+Riddle Puzzle 3
+PZ_3_C
+MTL_1
+3
+A small generous being kneels towards you it asks: White bird, featherless. Flying out of paradise. Flying over sea and land. Dying in my hand. What is it?
+Snow Flake
+Word Scramble Puzzle 1
+PZ_4_A
+MTL_2
+3
+You see a series of letters on a sign: "Elgku labpca" Try to decipher it.
+Black Plague
+Word Scramble Puzzle 2
+PZ_4_B
+MTL_4
+3
+You see a series of letters on a sign: "vnaeMi glEdla" What does it say?
+Medieval England
+Word Scramble Puzzle 3
+PZ_4_C
+MTL_6
+3
+You see a series of letters on a sign: "tAlot De hla" You know what to do.
+Death to All
+Hidden Item Puzzle
+PZ_5
+MTU_0
+1
+There is a rusty nail in the floorboard that opens up. Open it up?
+You have earned Royal Cheese with 60 extra health points!
+Trivia Puzzle 1
+PZ_6_A
+CL_0
+3
+Trivia Time! How many people died to the black plague?
+25 Million
+Trivia Puzzle 2
+PZ_6_B
+CL_3
+3
+Trivia Time! Where did the Plague originate from?
+China
+Trivia Puzzle 3
+PZ_6_C
+CL_5
+3
+Trivia Time! Who is the ruler of England at this time?
+Charles II
