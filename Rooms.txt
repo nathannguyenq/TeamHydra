@@ -1,12 +1,14 @@
 SW_0
 Sewer Entrance
 false
+false
 The room is dark and it is hard to see your way around. However, through the blackness, you manage to make out the figure of what seems to be a doorway to the EAST.
 not locked
 -,-,-,-,SW_1,-
 -
 SW_1
 Sewer Walkway: WEST
+false
 false
 There is a single torch illuminating the room. As you scan the room, you notice a pile of armor. There is  a door to your EAST and another to your WEST.
 not locked
@@ -15,12 +17,14 @@ not locked
 SW_2
 Sewer Opening
 false
+false
 The echoes of leaking pipes are all there keeping you company. You notice a sword. You see a doorway to the WEST, EAST, and NORTH. You listen carefully and can almost hear the soft murmur of voices to the SOUTH.
 not locked
 -,-,SW_3,HUB_0,SW_8,SW_1
 -
 SW_3
 Sewer Walkway: EAST
+false
 false
 This room is not that dark but it still is a struggle for you to see. The doorway to the NORTH seems faintly visible. There seems to be a bit of light coming from the doorway to the SOUTH.There is an upgrade kit available in this room.
 not locked
@@ -29,12 +33,14 @@ not locked
 HUB_0
 Sewer Hub
 false
+false
 This opening isn’t as junky as the rest of the sewers. In fact, the aesthetics remind you a little bit of home. There’s no one here but one merchant rat humming to himself behind the counter. To the NORTH and SOUTH are doorways leading back into the sewers, but the WEST behind the counter is a door as well.
 not locked
 -,-,SW_2,SW_5,-,SW_7
 -
 SW_4
 The Middle Passage
+false
 false
 If you close your eyes you can hear small scurrying in the distance. It’s probably best not to stay here too long. There is a doorway to the WEST. There also seems to be a bit of light coming from the doorway to the NORTH.
 not locked
@@ -43,6 +49,7 @@ not locked
 SW_5
 Sewer Walkway: SOUTH
 false
+false
 The scurrying has gotten a bit louder, almost like it’s coming from this room. If you stay here long, you may be attacked. There is a doorway to the WEST. There seems to be a bit of light coming from the doorway to the EAST. You listen carefully and can almost hear the soft murmur of voices to the NORTH. To the SOUTH there’s a hallway leading further into the sewer.There is an upgrade kit available in this room.
 You need a sword to unlock the room!!
 -,-,HUB_0,SW_4,SW_8,SW_6
@@ -50,6 +57,7 @@ You need a sword to unlock the room!!
 SW_6
 Damp Hideaway
 true
+false
 You use the Skeleton Key to unlock the door. The room is dimly lit but you can still make out the junk scattered about the room. There is a doorway to the SOUTH.
 You come upon a DOOR that you do not seem to have the key for. You should probably turn back SOUTH.
 -,-,-,SW_5,-,-
@@ -57,12 +65,14 @@ skeleton key
 SW_7
 Storage Closet
 ture
+false
 UNLOCKED You dig through your bag and find the Merchant’s Key, which seems to be a perfect fit for the door. You open it, but there doesn’t seem to be much in this room. Why would someone go through the trouble of locking this door?There’s a doorway to the EAST.
 not locked
 -,-,-,-,HUB_0,-
 merchant’s key
 SW_8
 Central Sewers
+false
 false
 There’s light shining in from a hole in the roof. In the corner, there’s a LADDER UP leading up toward the light. You can see doorways to the EAST, WEST, NORTH, and SOUTH.There is an upgrade kit available in this room.
 not locked
@@ -71,12 +81,14 @@ MTL_0,-,SW_2,SW_4,SW_3,SW_5
 SW_9
 Tucked Crevice
 false
+false
 There’s light shining in from a hole in the roof, illuminating the whole room. There’s a LADDER UP in the corner.
 not locked
 MTU_3,-,-,-,-,-
 -
 SW_10
 Sewer Cubby
+false
 false
 There’s light shining in from a hole in the roof, illuminating the whole room. What may have seemed vast in the dark you now see to be a rather small room. There’s a LADDER UP in the corner.
 not locked
@@ -85,12 +97,14 @@ MUT_2,-,-,-,-,-
 MTL_0
 Midtown Welcome
 false
+false
 The smell of death fills the air. Hmm - is that cheese as well? You don’t see any corpses but you’re sure they’re around here somewhere. Behind you to the SOUTH, there’s a path leading in the sewers. There’s also a set of stairs to the NORTH.
 not locked
 -,SW_8,MTL_1,-,-,-
 -
 MTL_1
 Oak Avenue
+false
 false
 What’s left of residential buildings line the street but they’re all shuttered. Seems like the residents are long gone by now. The road stretches for some time to the WEST and the EAST. There is an upgrade kit available in this room.
 not locked
@@ -99,12 +113,14 @@ not locked
 MTL_2
 Clinic
 false
+false
 As you come upon the end of the road you spot an abandoned clinic off to the side. You see a pile of bodies on the side of the building. That must be where the pungent stench is coming from.To the EAST there’s the beginning of what’s left of a residential district. To the NORTH crates and a cart can be seen overturned next to the road. Sword upgrade kit is available in this room.
 not locked
 -,-,MTL_3,-,MTL_1,-
 -
 MTL_3
 Outer Market
+false
 false
 A multitude of carts next to tents give the impression of a once bustling market. Besides the few stragglers, there’s not much humans roaming here. There’s an unusual amount of bodies near to the SOUTH. To the EAST there’s more tents.
 not locked
@@ -113,12 +129,14 @@ not locked
 MTL_4
 Inner Market
 false
+false
 The streets here are quite thin, but merchants still seem to have crowded this place. In the center of the market is a large statue that has fallen into ruin. To the NORTH you see a large gate to the top of some stairs. To the EAST you can hear more voices than you’ve heard elsewhere. To the WEST there just seems to be more merchant tents.There is cheese available in this room.
 not locked
 -,-,MTL_7,-,MTL_5,MTL_3
 -
 MTL_5
 Crowded Cathedral
+false
 false
 Humans have congregated at the leftovers of a church, but there are no doctors among them. They appear weak, but it may be wise to avoid them still. Some abandoned residences can be seen to the SOUTH. To the WEST there are a few carts with crates in them. Beside the church is a LADDER UP you may be able to get to.
 not locked
@@ -127,12 +145,14 @@ MTU_0,-,-,MTL_6,-,MTL_4
 MTL_6
 Maple Street
 false
+false
 The buildings on this street have been abandoned for a while. There isn’t really much left here, be it people or things. The buildings continue some more to the WEST. A church bell can be heard somewhere NORTH of here. Armor kit upgrade is available.
 not locked
 -,-,MTL_5,-,-,MTL_1
 -
 MTL_7
 Grand Gates
+false
 false
 They appear unmaintained, but the prominence of the gates ahead can still be felt. Given how fancy they look, there can only be one thing to the NORTH beyond the gates. A large statue is peaking over the merchant tent to the SOUTH of here.There is cheese available in this room.
 not locked
@@ -141,12 +161,14 @@ not locked
 MTU_0
 Cathedral Balcony
 false
+false
 The people in the church below are oblivious to you walking above them. There are power lines both to the EAST and WEST. In the corner there is a LADDER DOWN leaning against the wall.Armor upgrade kit is available in this room.
 not locked
 -,MTL_5,-,-,MTU_1,MTU_4
 -
 MTU_1
 Midtown Overhang - East
+false
 false
 There’s a dim lamp lighting up a small platform. This seems like a tucked away spot, but there are more lamps on another platform to the NORTH. To the SOUTH there is no light, but there is another power line to walk on.
 not locked
@@ -155,12 +177,14 @@ not locked
 MTU_2
 Resident Roof
 false
+false
 The roof here is dark and you can barely see 3 feet in front of you. There’s a loose duct cover on the wall. Pulling it off revealed a makeshift LADDER DOWN. There’s a power line to the NORTH.
 not locked
 -,SW_10,MTU_1,-,-,-
 -
 MTU_3
 Clinic - Yard
+false
 false
 There’s a small yard at the back of a building. You don’t find much grass here, but in the center there’s a drainage opening with a LADDER DOWN. To the EAST some platforming could get you to the roof of the building.Sword upgrade kit is available in this room.
 not locked
@@ -169,6 +193,7 @@ not locked
 MTU_4
 Clinic - Roof
 false
+false
 You happen upon the top of a building. The occasional voice can be heard below and the stench of death is particularly pungent here. To the EAST there’s a power line leading off the roof and to the SOUTH is an overlook of the back of the building.
 no locked
 -,-,-,MTU_3,MTU_0,-
@@ -176,12 +201,14 @@ no locked
 MTU_5
 High Road Gates
 true
-UNLOCKED The High Road Key in your inventory seems to be the perfect fit for the gate here. Some lamps lay at the foot of a brooding gate. Despite being old the gate seems quite sturdy. The fancy cobblestone path stretches beyond the gate to the NORTH. To the SOUTH there’s a power line to a platform in the distance.
+false
+The High Road Key in your inventory seems to be the perfect fit for the gate here. Some lamps lay at the foot of a brooding gate. Despite being old the gate seems quite sturdy. The fancy cobblestone path stretches beyond the gate to the NORTH. To the SOUTH there’s a power line to a platform in the distance.
 You come upon a gate that you don’t seem to have the key for. You decide to turn back to the SOUTH and try elsewhere.
 -,-,-,MTU_1,-,-
 high road key
 CU_0
 Castle Outskirts
+false
 false
 Coming out of the darkness you see well trimmed hedges and open fields. You are in royal territory, it won’t be long now. To the SOUTH behind you lies the way back to town. To the WEST is a road leading closer to the castle.
 not locked
@@ -190,12 +217,14 @@ not locked
 CU_1
 Courtyard
 false
+false
 As you approach the castle you end up in an empty courtyard. You spot that there’s quite a few windows on this side of the castle, one of which is open. Continue NORTH and you’ll finally be able to enter. To the EAST is a road leading back towards the outskirts of the estate. There is cheese available in this room.
 not locked
 -,-,CU_2,-,CU_0,-
 -
 CU_2
 Guest Bedroom
+false
 false
 Having climbed through an open window you arrive in a guest bedroom on the castle’s second level. To the NORTH is the door leading to the hallway. To the WEST there’s also a door to the closet. There’s a familiar scent coming from it. To the EAST is an open window you can get out from. There is a sword upgrade kit available.
 not locked
@@ -204,12 +233,14 @@ not locked
 HUB_1
 Castle Hub
 false
+false
 This room reminds you of the hub from the sewers and the merchant here looks friendly. Let’s just hope her prices are as well. To the EAST leads to the guest bedroom.
 not locked
 -,-,-,-,CU_2,-
 -
 CU_3
 Upstairs: Main Hall
+false
 false
 You’re in the upstairs hallway. There are numerous paintings hanging from the decorated walls on both sides of you. To the NORTH you see a crossroad with a door at the end. To the WEST leads back toward the guest bedroom.
 not locked
@@ -218,6 +249,7 @@ not locked
 CU_4
 Upstairs: Main Hall
 false
+false
 You come to a crossroad at the end of a hall. To the NORTH is the fanciest door you’ve seen in the entire house, but there’s a rather rugged looking cat guarding the door. The hallways continue to the WEST and EAST.There is cheese available in this room.
 not locked
 -,-,CU_5,-,CU_7,CU_6
@@ -225,12 +257,14 @@ not locked
 CU_5
 Royal Quarters
 true
+false
 With the guards out of the way the coast is clear. You shove the fanciful door open to reveal a massive suite inside. This could easily be the best room in the house. The bed alone seems to take up half the room. The King sure isn’t the tidiest person because there’s plenty of widgets scattered about the dresser and floor. Running a kingdom must not afford you the time to clean. To the SOUTH is the door back to the hallway crossroads.
 The door won’t budge. You’d pick the lock but that roaming cat would never afford you the time. It’s best to leave it be for now and go back SOUTH.
 -,-,-,CU_4,-,-
 -
 CU_6
 Royal Library
+false
 false
 You’ve seen better libraries, but this one isn’t too bad. There is a mantled fireplace on one side of the room with a painting of the king overlooking above it. There are also shelves packed with books to either side. One can study for a while in a place as cozy as this. To the EAST is the doorway back to the hall.
 not locked
@@ -239,12 +273,14 @@ not locked
 CU_7
 Upstairs: Dead End
 false
+false
 You’ve reached a dead end at the end of the hallway. You look on the wall to see there’s some sort of lift contraption. You might be able to use it as a LADDER DOWN if you can get it to work. To the NORTH leads back to the crossroad in the hallway.
 not locked
 -,CL_3,CU_4,-,-,-
 -
 CL_0
 Gathering Hall
+false
 false
 You stand in a large room at the entrance of the castle. There’s not much here but the decor is sure to impress any guest. To the SOUTH over the hills you see the road leading to town. The doorway to the NORTH stretches further into the castle.Sword upgrade kit is available in this room.
 not locked
@@ -253,12 +289,14 @@ not locked
 CL_1
 Castle Hallway
 false
+false
 The halls of the castle are wider than any one person needs. But what better way is there to flaunt one’s wealth. At a crossroad in the hall there are doors to the EASTand WEST, but the hallway continues further NORTH. Or you can turn and head back SOUTH.There is cheese available in this room.
 not locked
 -,-,CL_4,CL_0,CL_3,CL_2
 -
 CL_2
 Guard Rest Area
+false
 false
 Though not much in the way of decor this room is filled with plenty of swords and armor. You’re able to make out what looks like a Royal Crest on a cowl hung by a closet door, as if someone was just here. To the EAST there is a door to the hallway.Armor upgrade kit is available in this room.
 not locked
@@ -267,12 +305,14 @@ not locked
 CL_3
 Kitchen
 false
+true
 The kitchen is empty but there’s a rather large cauldron of stew boiling on the stove. Someone may have just been here so it’s probably best not to dally here too long. There’s a door out to the WEST and on the wall there’s a delivery shaft. Maybe you can use it as a LADDER UP. Sword kit is available in this room.
-The kitchen is empty but there’s a rather large cauldron of stew boiling on the stove. Someone may have just been here so it’s probably best not to dally here too long. There’s a door out to the WEST and on the wall there’s a delivery shaft. Maybe you can use it as a LADDER UP. Sword kit is available in this room.
+You turn the nob, but the door won’t budge. You can smell a pleasant scent coming from the other side. Maybe there’s another way in to the WEST.
 CU_7,-,-,-,-,CL_1
 -
 CL_4
 Stair Landing
+false
 false
 You’re standing in a wide open room where the ceiling is held by columns reaching for the heavens. From the base of the steps you look up and it looks like there are about a hundred steps with an intricate painting of a man at the top above an archway. To the NORTH beyond it you see two large doors held shut with a gold lion’s head in the center. There’s a red carpet to the EAST that also leads to two large doors. To the SOUTH leads back down the hallway.Armor upgrade kit is available in this room.
 not locked
@@ -281,12 +321,14 @@ not locked
 CL_5
 Grand Dining Hall
 false
+false
 RICIN POUCH USED in CL_3 No one is here yet so you decide to sit and wait.... Some time has passed and in comes the king and his court to take their seats high atop the world. The chef walks in with their carefully prepared dinner and you watch as one by one they all take their first bites. Their faces light up in bliss from the taste initially, however, slowly they come to the realization that something isn’t right but at this point it’s already too late. They start dropping like flies. One after the other, you watch as the old world collapses before you. The last among them is the king, who, with his last fiber of life catches a glimpse of you in the corner before he closes his eyes for good. Still clutching to what little sense of control he thought he had left. The deed is done. To the WEST there’s a large double door to exit through.
 WHEN RICIN POUCH NOT USED The room is longer than the rest of the rooms in this castle but it isn’t any less decorated. Taking up most of the space is a table as long as the room with blood red cloth draped upon it. There are about fifty chairs, including two large ones at the far end. There are set utensils as if the residents are getting ready for a feast. To the WEST is two large doors. not locked
 -,-,-,-,-,CL_4
 -
 CL_6
 Throne Room
+false
 false
 IF KING DEAD You walk through the double doors to the SOUTH. The room is large but surprisingly uneventful. There’s the throne sitting in the middle of the room in front of a large window overlooking the kingdom. There’s nothing left to do besides claim the fruits of your labor.
 IF KING DEAD You walk through the double doors to the SOUTH. The room is large but surprisingly uneventful. There’s the throne sitting in the middle of the room in front of a large window overlooking the kingdom. There’s nothing left to do besides claim the fruits of your labor.

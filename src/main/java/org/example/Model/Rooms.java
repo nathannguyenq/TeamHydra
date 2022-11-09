@@ -13,10 +13,12 @@ public class Rooms {
     private String roomID;
     private String roomName = "";
     private boolean locked = false;
+    private boolean needsRightDirection = false;
     private String roomDescription = "";
     private String lockedDescription = "";
     private String[] neighbor;
     private String lockedRequirement = "";
+
 
 
     private HashMap<String, Items> itemHash = new HashMap<>();
@@ -24,14 +26,16 @@ public class Rooms {
     private HashMap<String, Monster> monsterHash = new HashMap<>();
 
 
-    public Rooms(String id, String roomName, boolean locked, String roomDescription, String lockedDescription, String[] neighbor, String lockedRequirement, HashMap<String, Items> items, HashMap<String, Puzzle> puzzles,HashMap<String, Monster> monsters) {
+    public Rooms(String id, String roomName, boolean locked, boolean needsRightDirection, String roomDescription, String lockedDescription, String[] neighbor, String lockedRequirement, HashMap<String, Items> items, HashMap<String, Puzzle> puzzles,HashMap<String, Monster> monsters) {
         this.roomID = id;
         this.roomName = roomName;
         this.locked = locked;
+        this.needsRightDirection = needsRightDirection;
         this.roomDescription = roomDescription;
         this.lockedDescription = lockedDescription;
         this.neighbor = neighbor;
         this.lockedRequirement = lockedRequirement;
+
 
         linkItems(items);
         linkPuzzles(puzzles);
@@ -67,6 +71,14 @@ public class Rooms {
 
     public String getLockedRequirement() {
         return lockedRequirement;
+    }
+
+    public boolean getNeedsRightDirection() {
+        return needsRightDirection;
+    }
+
+    public void setNeedsRightDirection(boolean needsRightDirection) {
+        this.needsRightDirection = needsRightDirection;
     }
 
     public void linkItems(HashMap<String, Items> items) {
@@ -127,6 +139,7 @@ public class Rooms {
                 String id = line;
                 String name = reader.readLine();
                 boolean  locked = Boolean.parseBoolean(reader.readLine());
+                boolean needsRightDirection = Boolean.parseBoolean(reader.readLine());
                 String description = reader.readLine();
                 String lockedDescription = reader.readLine();
                 String[] neighbors = reader.readLine().split(",");
@@ -134,7 +147,7 @@ public class Rooms {
                     neighbors[i] = neighbors[i].trim();
                 }
                 String lockedRequirement = reader.readLine();
-                rHash.put(id, new Rooms(id, name, locked, description, lockedDescription, neighbors, lockedRequirement, itemHash, puzzleHash, monsterHash));
+                rHash.put(id, new Rooms(id, name, locked, needsRightDirection, description, lockedDescription, neighbors, lockedRequirement, itemHash, puzzleHash, monsterHash));
             }
             return rHash;
         } catch (IOException e) {

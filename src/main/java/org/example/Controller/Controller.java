@@ -28,6 +28,8 @@ public class Controller {
     HashMap<String, Rooms> roomsHashMap = Rooms.createRooms(itemsHashMap, puzzleHashMap, monsterHashMap);
     String currRoom = "";
     String prevRoom = "";
+    String cuRoom = "";
+    String prRoom = "";
 
 
     public static void main(String[] args) {
@@ -66,8 +68,11 @@ public class Controller {
                     temp = temp + command[i] + "";
                 }
                 temp = temp.trim();
-
-                player.explore(temp);
+                if (!player.getPlayerInventory().containsKey(temp)) {
+                    System.out.println("you do not have " + temp + " in your inventory");
+                }else {
+                    player.explore(temp);
+                }
             } else {
                 view.invalid(str);
             }
@@ -145,7 +150,25 @@ public class Controller {
                     }
                 }
             }
-
+            if (roomsHashMap.get(player.getLocation()).getNeedsRightDirection() == false) {
+                prRoom = cuRoom;
+                cuRoom = player.getLocation();
+            }
+            if (roomsHashMap.get(player.getLocation()).getNeedsRightDirection() == true && !(command[0].equals("south") || command[0].equals("s"))) {
+                while (roomsHashMap.get(player.getLocation()).getNeedsRightDirection() == true) {
+                    System.out.println(roomsHashMap.get(player.getLocation()).getLockedDescription());
+                    view.leave(str);
+                    System.out.println();
+                    String lockInput = scanner.nextLine();
+                    lockInput = lockInput.toLowerCase();
+                    if (lockInput.equals("leave")) {
+                        player.setLocation(cuRoom);
+                    }
+                }
+            }else {
+                roomsHashMap.get(player.getLocation()).setNeedsRightDirection(false);
+            }
+            System.out.println(roomsHashMap.get(player.getLocation()).getNeedsRightDirection());
                 System.out.println(roomsHashMap.get(player.getLocation()).getRoomName());
                 if (!flag.contains(roomsHashMap.get(player.getLocation()).getRoomID())) {
                     view.notVisited(str);
