@@ -18,8 +18,12 @@ public class Items {
     private int iHeal;
     private int mHealth;
 
+    private int iCost;
+    private int iAmount;
+    private int invAmount;
 
-    public Items(String iId, String iName, String iDescription,String iType, ArrayList<String> iLocation, int iAttack, int iHeal, int mHealth) {
+
+    public Items(String iId, String iName, String iDescription,String iType, ArrayList<String> iLocation, int iAttack, int iHeal, int mHealth, int iCost, int iAmount, int invAmount) {
         this.iID = iId;
         this.iName = iName;
         this.iDescription = iDescription;
@@ -28,6 +32,9 @@ public class Items {
         this.iAttack = iAttack;
         this.iHeal = iHeal;
         this.mHealth = mHealth;
+        this.iCost = iCost;
+        this.iAmount = iAmount;
+        this.invAmount = invAmount;
     }
 
     public String getiName() {
@@ -58,6 +65,17 @@ public class Items {
         return iType;
     }
 
+    public int getiCost() {
+        return iCost;
+    }
+
+    public void setiCost(int iCost) {
+        this.iCost = iCost;
+    }
+
+    public int getiAmount() {
+        return iAmount;
+    }
     public void look() {
         System.out.println(iDescription);
     }
@@ -84,8 +102,11 @@ public class Items {
                 int iAttack = Integer.parseInt(reader.readLine());
                 int iHeal = Integer.parseInt(reader.readLine());
                 int mHealth = Integer.parseInt(reader.readLine());
+                int iCost = Integer.parseInt(reader.readLine());
+                int iAmount = Integer.parseInt(reader.readLine());
+                int invAmount = Integer.parseInt(reader.readLine());
 
-                iHash.put(iName, new Items(iID,iName, iDescription,iType,iLocation,iAttack,iHeal,mHealth));
+                iHash.put(iName, new Items(iID,iName, iDescription,iType,iLocation,iAttack,iHeal,mHealth, iCost, iAmount,invAmount));
             }
             return iHash;
         } catch (IOException e) {

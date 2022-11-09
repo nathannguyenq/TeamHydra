@@ -170,6 +170,16 @@ public class Player {
         return playerInventory.get(item).getiType();
     }
 
+    public int itemCost(String item) {
+        return playerInventory.get(item).getiCost();
+    }
+
+    public int itemAmount(String item) {
+        return playerInventory.get(item).getiAmount();
+    }
+
+
+
     public void explore(HashMap<String, Rooms> rooms) {
         rooms.get(location).look();
     }
