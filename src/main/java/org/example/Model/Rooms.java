@@ -24,9 +24,12 @@ public class Rooms {
     private HashMap<String, Items> itemHash = new HashMap<>();
     private HashMap<String, Puzzle> puzzleHash = new HashMap<>();
     private HashMap<String, Monster> monsterHash = new HashMap<>();
+    private HashMap<String, NPC> npcHash = new HashMap<>();
 
 
-    public Rooms(String id, String roomName, boolean locked, boolean needsRightDirection, String roomDescription, String lockedDescription, String[] neighbor, String lockedRequirement, HashMap<String, Items> items, HashMap<String, Puzzle> puzzles,HashMap<String, Monster> monsters) {
+    public Rooms(String id, String roomName, boolean locked, String roomDescription, String lockedDescription, String[] neighbor,
+                 String lockedRequirement, HashMap<String, Items> items, HashMap<String, Puzzle> puzzles,HashMap<String, Monster> monsters, HashMap<String, NPC> NPC) {
+
         this.roomID = id;
         this.roomName = roomName;
         this.locked = locked;
@@ -40,6 +43,7 @@ public class Rooms {
         linkItems(items);
         linkPuzzles(puzzles);
         linkMonsters(monsters);
+        linkNPC(NPC);
     }
 
     public String getRoomID() {
@@ -106,17 +110,25 @@ public class Rooms {
         }
     }
 
+    public void linkNPC(HashMap<String, NPC> npclink) {
+        for (Map.Entry<String, NPC> elt : npclink.entrySet()) {
+            if (elt.getValue().getnLocation().equals(roomID)) {
+                npcHash.put(elt.getKey(), elt.getValue());
+            }
+        }
+    }
+
     public void look() {
         System.out.println(roomDescription);
 
+        System.out.println("Items in the room: ");
         if (itemHash.isEmpty()) {
             System.out.println("Nothing found.");
             System.out.println(itemHash);
         } else {
             for (Map.Entry<String, Items> elt : itemHash.entrySet()) {
-                System.out.println(elt.getKey() + ", " );
+                System.out.println(elt.getKey() + " [" + itemHash.get(elt.getKey()).getiAmount() + "] " );
             }
-            System.out.println(" are the current item(s) in the room.");
         }
 
     }
@@ -129,7 +141,11 @@ public class Rooms {
         return puzzleHash;
     }
 
-    public static HashMap<String, Rooms> createRooms(HashMap<String, Items> itemHash , HashMap<String, Puzzle> puzzleHash,HashMap<String, Monster> monsterHash) {
+    public HashMap<String, NPC> getNpcHash() {
+        return npcHash;
+    }
+
+    public static HashMap<String, Rooms> createRooms(HashMap<String, Items> itemHash , HashMap<String, Puzzle> puzzleHash, HashMap<String, Monster> monsterHash, HashMap<String, NPC> npcHash) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("Rooms.txt"));
             String line;
@@ -147,7 +163,8 @@ public class Rooms {
                     neighbors[i] = neighbors[i].trim();
                 }
                 String lockedRequirement = reader.readLine();
-                rHash.put(id, new Rooms(id, name, locked, needsRightDirection, description, lockedDescription, neighbors, lockedRequirement, itemHash, puzzleHash, monsterHash));
+
+                rHash.put(id, new Rooms(id, name, locked, description, lockedDescription, neighbors, lockedRequirement, itemHash, puzzleHash, monsterHash, npcHash));
             }
             return rHash;
         } catch (IOException e) {

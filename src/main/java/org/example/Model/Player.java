@@ -51,13 +51,19 @@ public class Player {
             System.out.println("No items currently in inventory.");
         } else {
             for (Map.Entry<String, Items> elt : playerInventory.entrySet()) {
-                System.out.println(elt.getKey());
+                System.out.println(elt.getKey() + " [" + playerInventory.get(elt.getKey()).getInvAmount() + "]");
             }
         }
     }
 
-    public HashMap<String, Items> getPlayerEquipment() {
-        return playerEquipment;
+    public void getEquipment() {
+        if (playerInventory.isEmpty()) {
+            System.out.println("Nothing Equipped");
+        } else {
+            for (Map.Entry<String, Items> elt : playerEquipment.entrySet()) {
+                System.out.println(elt.getKey());
+            }
+        }
     }
 
     public void move(String direction, HashMap<String, Rooms> roomsHashMap) {
@@ -162,6 +168,21 @@ public class Player {
         }
     }
 
+    public void dropOne(String item, HashMap<String, Rooms> rooms) {
+        Items temp = null;
+
+        if (playerInventory.containsKey(item)) {
+            temp = playerInventory.get(item);
+
+            Rooms current = rooms.get(location);
+
+            current.getInventory().put(temp.getiName(), temp);
+            System.out.println(item + " dropped");
+        } else {
+            System.out.println("You don't have " + item + " yet.");
+        }
+    }
+
     public void explore(String item) {
         System.out.println(playerInventory.get(item).getiDescription());
     }
@@ -178,14 +199,24 @@ public class Player {
         return playerInventory.get(item).getiAmount();
     }
 
-
+    public int invAmount(String item) {
+        return playerInventory.get(item).getInvAmount();
+    }
 
     public void explore(HashMap<String, Rooms> rooms) {
         rooms.get(location).look();
     }
 
+    public void shop() {
+
+    }
+
     public HashMap<String, Items> getPlayerInventory() {
         return playerInventory;
+    }
+
+    public HashMap<String, Items> getPlayerEquipment() {
+        return playerEquipment;
     }
 
     public void use(String itemName, Map<String,Items> playerInventory) {
