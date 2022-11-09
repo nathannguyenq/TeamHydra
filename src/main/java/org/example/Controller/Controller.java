@@ -6,6 +6,7 @@ import org.example.View.View;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Controller {
@@ -19,7 +20,7 @@ public class Controller {
 
     HashMap<String, Items> itemsHashMap = Items.createItems();
     HashMap<String, Puzzle> puzzleHashMap = Puzzle.createPuzzles();
-    HashMap<String, Monster> monsterHashMap = new HashMap<>();
+    HashMap<String, Monster> monsterHashMap = Monster.createMonsters();
     HashMap<String, NPC> npcHashMap = NPC.createNPC(itemsHashMap);
     HashMap<String, Rooms> roomsHashMap = Rooms.createRooms(itemsHashMap, puzzleHashMap, monsterHashMap, npcHashMap);
     String currRoom = "";
@@ -120,7 +121,7 @@ public class Controller {
 //                System.out.println(player.getEquipment());
             }
             if (command[0].equals("help")) {
-                System.out.println();
+//                System.out.println();
             }
         } else if (command[0].equals("equip") || command[0].equals("eq")) {
             if (command.length >= 2) {
@@ -229,8 +230,27 @@ public class Controller {
                     System.out.println(temp + " is not here");
                 }
                 else if (roomsHashMap.get(player.getLocation()).getNpcHash().containsKey(temp)) {
+                    Random dia = new Random();
+                    int num = dia.nextInt(4);
+                    System.out.println(roomsHashMap.get(player.getLocation()).getNpcHash().get("quintella").getnDialogue().get(num));
+                    System.out.println("\"shop\" to shop with Quintella");
                     while (roomsHashMap.get(player.getLocation()).getNpcHash().containsKey(temp)) {
-
+                        String t = scanner.nextLine();
+                        if (t.equals("leave")) {
+                            System.out.println(roomsHashMap.get(player.getLocation()).getRoomName());
+                            System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
+                            break;
+                        }
+                        if (t.equals("shop")) {
+                            System.out.println("So what'll it be...");
+                            while (roomsHashMap.get(player.getLocation()).getNpcHash().containsKey(temp)) {
+//                                if (t.equals("leave")) {
+//                                    System.out.println(roomsHashMap.get(player.getLocation()).getRoomName());
+//                                    System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
+//                                    break;
+//                                }
+                            }
+                        }
                     }
                 }
                 else {
