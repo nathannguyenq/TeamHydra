@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Controller {
     Scanner scanner = new Scanner(System.in);
     View view = new View();
-    Player player = new Player(100, 0, 100);
+    Player player = new Player(100, 0, 100, 0);
     String str = "";
     ArrayList<String> pStorage = new ArrayList<>();
     ArrayList<String> flag = new ArrayList<>();
@@ -24,8 +24,13 @@ public class Controller {
     HashMap<String, Items> itemsHashMap = Items.createItems();
     HashMap<String, Puzzle> puzzleHashMap = Puzzle.createPuzzles();
 
-    HashMap<String, Monster> monsterHashMap = new HashMap<>();
+    HashMap<String, Monster> monsterHashMap = Monster.createMonsters();
+    
+    
     HashMap<String, Rooms> roomsHashMap = Rooms.createRooms(itemsHashMap, puzzleHashMap, monsterHashMap);
+    ArrayList<String> MonsterFlags = new ArrayList<>();
+
+    
     String currRoom = "";
     String prevRoom = "";
 
@@ -252,6 +257,120 @@ public class Controller {
             } else {
                 view.visited(str);
             }
+            
+            
+            
+            monsterHashMap.entrySet().forEach(entry -> {
+        
+                for (String num :  monsterHashMap.get(entry.getKey()).getSpawnLocation()) { 
+                	
+                    Scanner in = new Scanner(System.in);
+
+                	if(roomsHashMap.get(player.getLocation()).getRoomID().equals(num)) {
+                		
+
+                    	
+                    	if(!MonsterFlags.contains(num)) {
+                			System.out.println("Theres is a Monster in this Room, are you ready for this fight? YES or NO" );
+                			  String answer = in.nextLine();
+
+                			  
+                			  if(answer.equals("YES")) {
+                				  
+                				  
+                          		System.out.println("THE name of the Monster is: " + monsterHashMap.get(entry.getKey()).getName());
+                          		
+                          		while(monsterHashMap.get(entry.getKey()).getHP() > 0) {
+                          			
+                              		System.out.println("What command would you like to Use? attack, info or Run");
+                              		System.out.println("You will get hit after every Command");
+
+                      			     String battle = in.nextLine().toUpperCase();
+
+                              		if(battle.equals("ATTACK")) {
+                              		monsterHashMap.get(entry.getKey()).setHP((Player.attack(monsterHashMap.get(entry.getKey()).getHP()))); 
+
+                              			System.out.println("Current monster Hp = " + monsterHashMap.get(entry.getKey()).getHP() );
+                              		}
+                              		else if (battle.equals("INFO")) {
+                              			System.out.println(monsterHashMap.get(entry.getKey()).toString());
+
+                              		}
+                              		else if (battle.equals("RUN")) {
+                              			System.out.println(monsterHashMap.get(entry.getKey()).getLossMessage());
+                              			
+                              			
+                              			break;
+                              		}
+                              		
+                              		else if(player.getPlyhealth() < 20){
+                              			
+                              			System.out.println("You almost Dead go back !!!");
+                              			System.out.println(monsterHashMap.get(entry.getKey()).getLossMessage());
+
+
+                              			break;
+                              		
+                              		}
+                              		
+                              		else {
+                              			System.out.println("Wrong Input");
+                              		}
+                              		
+                              		player.setPlyhealth(player.getPlyhealth()-monsterHashMap.get(entry.getKey()).getAttackDamage());
+                              		
+                              		System.out.println("The monster just Hit you your current HP is " + player.getPlyhealth());
+                              		
+                              		
+                              		if(monsterHashMap.get(entry.getKey()).getHP() < 0) {
+                                  		MonsterFlags.add(num);
+                                  		player.setplyMoney(player.getPlyMoney() + monsterHashMap.get(entry.getKey()).getGoldReward());
+                                  		
+                                  		System.out.println(monsterHashMap.get(entry.getKey()).getWinMessage());
+                              			
+                              			
+
+
+                              		}
+                              		
+
+                          		}
+                          		
+                          		
+                				  
+                			  }
+                			  else {
+                				  System.out.println("i Hope your ready Next Time");
+                			  }
+                			  
+                			 
+                			
+
+                		}else {
+                    		System.out.println("There used to be a Monster Here, You already kill " + monsterHashMap.get(entry.getKey()).getName());
+
+                		}
+
+                	}
+                	//System.out.println(num);
+
+                	
+                	}
+                 		
+                });
+            
+//            monsterHashMap.entrySet().forEach(entry -> {
+//            	//MonsterHashMap.get(entry.getKey()).getSpawnLocation();
+//            	
+//            	
+//            
+//                System.out.print(entry.getKey());
+//                System.out.println(" " +monsterHashMap.get(entry.getKey()).getSpawnLocation());
+//                
+//                System.out.print(" ");
+//            });
+            
+
             System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
         }
     }
