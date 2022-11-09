@@ -88,7 +88,7 @@ public class Monster {
         return AttackDamage;
     }
 
-    public static HashMap<String, Items> createMonsters() {
+    public static HashMap<String, Monster> createMonsters() {
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader("Monsters.txt"));
@@ -118,6 +118,7 @@ public class Monster {
 //                System.out.print(" = ");
 //                System.out.println(MonsterHashMap.get(mName).getGoldReward());
             }
+            return mHash;
         } catch (IOException e) {
             System.out.println("File not found");
         }
