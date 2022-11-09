@@ -51,7 +51,7 @@ Sewer Walkway: SOUTH
 false
 false
 The scurrying has gotten a bit louder, almost like it’s coming from this room. If you stay here long, you may be attacked. There is a doorway to the WEST. There seems to be a bit of light coming from the doorway to the EAST. You listen carefully and can almost hear the soft murmur of voices to the NORTH. To the SOUTH there’s a hallway leading further into the sewer.There is an upgrade kit available in this room.
-You need a sword to unlock the room!!
+not locked
 -,-,HUB_0,SW_4,SW_8,SW_6
 -
 SW_6

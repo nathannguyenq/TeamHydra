@@ -178,10 +178,6 @@ public class Player {
         return playerInventory;
     }
 
-    public void goTo(String desiredLocation) {
-        location = desiredLocation;
-    }
-
     public void use(String itemName, Map<String,Items> playerInventory) {
         Items temp = null;
 

@@ -181,6 +181,23 @@ public class Controller {
                 System.out.println("You do not have " + command[1]);
             }
         }
+        else if (command[0].equals("goto")) {
+            if (command.length >= 2) {
+                String temp = "";
+                for (int i = 1; i < command.length; i++) {
+                    temp = temp + command[i] + " ";
+                }
+                temp = temp.trim();
+                if(flag.contains(temp.toUpperCase())) {
+                    player.setLocation(temp.toUpperCase());
+                    System.out.println(player.getLocation());
+                    System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
+                }
+                else{
+                    System.out.println("you havent been thee before");
+                }
+            }
+        }
 //        else if (command[0].equals("unequip") || command[0].equals("un")) {
 //            if (command.length >= 2) {
 //                String temp = "";
@@ -192,7 +209,6 @@ public class Controller {
 //
 //
 //            }
-        String currentLocation = player.getLocation();
         if (command[0].equals("ladder-up") || command[0].equals("ladder-down") || command[0].equals("north") || command[0].equals("south") || command[0].equals("east") || command[0].equals("west") || command[0].equals("u") || command[0].equals("d") || command[0].equals("n") || command[0].equals("s") || command[0].equals("e") || command[0].equals("w")) {
             player.move(command[0], roomsHashMap);
             if (roomsHashMap.get(player.getLocation()).getPuzzleHashMap().containsKey(player.getLocation())) {
@@ -251,7 +267,7 @@ public class Controller {
                 prRoom = cuRoom;
                 cuRoom = player.getLocation();
             }
-            if (roomsHashMap.get(player.getLocation()).getNeedsRightDirection() == true && !(command[0].equals("south") || command[0].equals("s"))) {
+            if (roomsHashMap.get(player.getLocation()).getNeedsRightDirection() == true && !(command[0].equals("ladder-down") || command[0].equals("d"))) {
                 while (roomsHashMap.get(player.getLocation()).getNeedsRightDirection() == true) {
                     System.out.println(roomsHashMap.get(player.getLocation()).getLockedDescription());
                     view.leave(str);
@@ -265,7 +281,8 @@ public class Controller {
             }else {
                 roomsHashMap.get(player.getLocation()).setNeedsRightDirection(false);
             }
-            System.out.println(roomsHashMap.get(player.getLocation()).getRoomName());
+            System.out.print(roomsHashMap.get(player.getLocation()).getRoomName());
+            System.out.println(" ("+ roomsHashMap.get(player.getLocation()).getRoomID() +")");
             if (!flag.contains(roomsHashMap.get(player.getLocation()).getRoomID())) {
                 view.notVisited(str);
                 flag.add((roomsHashMap.get(player.getLocation()).getRoomID()));
