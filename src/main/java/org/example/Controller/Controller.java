@@ -23,11 +23,12 @@ public class Controller {
 
     HashMap<String, Items> itemsHashMap = Items.createItems();
     HashMap<String, Puzzle> puzzleHashMap = Puzzle.createPuzzles();
-
     HashMap<String, Monster> monsterHashMap = new HashMap<>();
     HashMap<String, Rooms> roomsHashMap = Rooms.createRooms(itemsHashMap, puzzleHashMap, monsterHashMap);
     String currRoom = "";
     String prevRoom = "";
+
+    int rTotal = 0;
 
 
     public static void main(String[] args) {
@@ -53,15 +54,38 @@ public class Controller {
                     temp = temp + command[i] + " ";
                 }
                 temp = temp.trim();
+                if (!roomsHashMap.get(player.getLocation()).getInventory().containsKey(temp)) {
+                    view.invalid(str);
+                }
+                else {
+                    player.add(temp, roomsHashMap);
 
-                player.add(temp, roomsHashMap);
+                }
             } else {
+                view.invalid(str);
+            }
+        } else if (command[0].equals("remove")) {
+            if (command.length >= 2) {
+                String temp = "";
+                for (int i = 1; i < command.length; i++) {
+                    temp = temp + command[i] + " ";
+                }
+                temp = temp.trim();
+                if (!player.getPlayerInventory().containsKey(temp)) {
+                    view.invalid(str);
+                }
+                else {
+                    player.drop(temp, roomsHashMap);
+                    rTotal--;
+                }
+                System.out.println(rTotal);
+            }
+            else {
                 view.invalid(str);
             }
         } else if (command[0].equals("observe")) {
             if (command.length >= 2) {
                 String temp = "";
-
                 for (int i = 1; i < command.length; i++) {
                     temp = temp + command[i] + "";
                 }
@@ -75,20 +99,10 @@ public class Controller {
             } else {
                 view.invalid(str);
             }
-        } else if (command[0].equals("remove")) {
-            if (command.length >= 2) {
-                String temp = "";
-                for (int i = 1; i < command.length; i++) {
-                    temp = temp + command[i] + " ";
-                }
-                temp = temp.trim();
-                player.drop(temp, roomsHashMap);
-            } else {
-                view.invalid(str);
-            }
         } else if (command.length == 1) {
             if (command[0].equals("inventory")) {
                 player.getInventory();
+                System.out.println(rTotal);
             }
             if (command[0].equals("stats")) {
                 System.out.println("Player Attack: " + player.getPlyattack());
@@ -191,6 +205,23 @@ public class Controller {
 //
 //
 //            }
+        else if (command[0].equals("goto")) {
+            if (command.length >= 2) {
+                String temp = "";
+                for (int i = 1; i < command.length; i++) {
+                    temp = temp + command[i] + " ";
+                }
+                temp = temp.trim();
+                if(flag.contains(temp.toUpperCase())) {
+                    player.setLocation(temp.toUpperCase());
+                    System.out.println(player.getLocation());
+                    System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
+                }
+                else{
+                    System.out.println("you havent been thee before");
+                }
+            }
+        }
         String currentLocation = player.getLocation();
         if (command[0].equals("ladder-up") || command[0].equals("ladder-down") || command[0].equals("north") || command[0].equals("south") || command[0].equals("east") || command[0].equals("west") || command[0].equals("u") || command[0].equals("d") || command[0].equals("n") || command[0].equals("s") || command[0].equals("e") || command[0].equals("w")) {
             player.move(command[0], roomsHashMap);

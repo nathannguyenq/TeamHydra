@@ -170,16 +170,22 @@ public class Player {
         return playerInventory.get(item).getiType();
     }
 
+    public int itemCost(String item) {
+        return playerInventory.get(item).getiCost();
+    }
+
+    public int itemAmount(String item) {
+        return playerInventory.get(item).getiAmount();
+    }
+
+
+
     public void explore(HashMap<String, Rooms> rooms) {
         rooms.get(location).look();
     }
 
     public HashMap<String, Items> getPlayerInventory() {
         return playerInventory;
-    }
-
-    public void goTo(String desiredLocation) {
-        location = desiredLocation;
     }
 
     public void use(String itemName, Map<String,Items> playerInventory) {

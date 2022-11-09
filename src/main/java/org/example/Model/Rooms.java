@@ -102,7 +102,7 @@ public class Rooms {
             System.out.println(itemHash);
         } else {
             for (Map.Entry<String, Items> elt : itemHash.entrySet()) {
-                System.out.print(elt.getKey() + ", ");
+                System.out.println(elt.getKey() + ", " );
             }
             System.out.println(" are the current item(s) in the room.");
         }
