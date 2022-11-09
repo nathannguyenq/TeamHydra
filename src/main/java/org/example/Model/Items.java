@@ -76,6 +76,19 @@ public class Items {
     public int getiAmount() {
         return iAmount;
     }
+
+    public void setiAmount(int iAmount) {
+        this.iAmount = iAmount;
+    }
+
+    public int getInvAmount() {
+        return invAmount;
+    }
+
+    public void setInvAmount(int invAmount) {
+        this.invAmount = invAmount;
+    }
+
     public void look() {
         System.out.println(iDescription);
     }

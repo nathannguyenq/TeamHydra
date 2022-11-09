@@ -1,10 +1,6 @@
 package org.example.Controller;
 
-import org.example.Model.Items;
-import org.example.Model.Monster;
-import org.example.Model.Player;
-import org.example.Model.Puzzle;
-import org.example.Model.Rooms;
+import org.example.Model.*;
 import org.example.View.View;
 
 import java.io.*;
@@ -24,12 +20,10 @@ public class Controller {
     HashMap<String, Items> itemsHashMap = Items.createItems();
     HashMap<String, Puzzle> puzzleHashMap = Puzzle.createPuzzles();
     HashMap<String, Monster> monsterHashMap = new HashMap<>();
-    HashMap<String, Rooms> roomsHashMap = Rooms.createRooms(itemsHashMap, puzzleHashMap, monsterHashMap);
+    HashMap<String, NPC> npcHashMap = NPC.createNPC(itemsHashMap);
+    HashMap<String, Rooms> roomsHashMap = Rooms.createRooms(itemsHashMap, puzzleHashMap, monsterHashMap, npcHashMap);
     String currRoom = "";
     String prevRoom = "";
-
-    int rTotal = 0;
-
 
     public static void main(String[] args) {
     }
@@ -59,12 +53,16 @@ public class Controller {
                 }
                 else {
                     player.add(temp, roomsHashMap);
-
+                    int rTotal = player.invAmount(temp);
+                    rTotal++;
+                    player.getPlayerInventory().get(temp).setInvAmount(rTotal);
+                    System.out.println(player.invAmount(temp));
                 }
             } else {
                 view.invalid(str);
             }
-        } else if (command[0].equals("remove")) {
+        }
+        else if (command[0].equals("remove")) {
             if (command.length >= 2) {
                 String temp = "";
                 for (int i = 1; i < command.length; i++) {
@@ -74,12 +72,22 @@ public class Controller {
                 if (!player.getPlayerInventory().containsKey(temp)) {
                     view.invalid(str);
                 }
-                else {
+                else if (player.getPlayerInventory().get(temp).getInvAmount() == 1) {
+                    int iTotal = player.itemAmount(temp);
+                    player.getPlayerInventory().get(temp).setInvAmount(0);
                     player.drop(temp, roomsHashMap);
+                    iTotal++;
+                    roomsHashMap.get(player.getLocation()).getInventory().get(temp).setiAmount(iTotal);
+                } else if (player.getPlayerInventory().get(temp).getInvAmount() > 1) {
+                    int rTotal = player.invAmount(temp);
                     rTotal--;
+                    player.getPlayerInventory().get(temp).setInvAmount(rTotal);
+                    player.dropOne(temp, roomsHashMap);
                 }
-                System.out.println(rTotal);
-            }
+                else {
+                    view.invalid(str);
+                }
+            } 
             else {
                 view.invalid(str);
             }
@@ -102,12 +110,15 @@ public class Controller {
         } else if (command.length == 1) {
             if (command[0].equals("inventory")) {
                 player.getInventory();
-                System.out.println(rTotal);
             }
             if (command[0].equals("stats")) {
                 System.out.println("Player Attack: " + player.getPlyattack());
                 System.out.println("Player Health: " + player.getPlyhealth());
                 System.out.println("Player Max Health: " + player.getPlyMHealth());
+//                System.out.println(player.getEquipment());
+            }
+            if (command[0].equals("help")) {
+                System.out.println();
             }
         } else if (command[0].equals("equip") || command[0].equals("eq")) {
             if (command.length >= 2) {
@@ -205,6 +216,28 @@ public class Controller {
 //
 //
 //            }
+        else if (command[0].equals("talk")) {
+            if (command.length >= 2) {
+                String temp = "";
+                for (int i = 1; i < command.length; i++) {
+                    temp = temp + command[i] + " ";
+                }
+                temp = temp.trim();
+                if (!roomsHashMap.get(player.getLocation()).getNpcHash().containsKey(temp)) {
+                    System.out.println(temp + " is not here");
+                }
+                else if (roomsHashMap.get(player.getLocation()).getNpcHash().containsKey(temp)) {
+                    while (roomsHashMap.get(player.getLocation()).getNpcHash().containsKey(temp)) {
+
+                    }
+                }
+                else {
+                    System.out.println(temp + " is not here");
+                }
+            } else {
+                view.invalid(str);
+            }
+        }
         else if (command[0].equals("goto")) {
             if (command.length >= 2) {
                 String temp = "";
@@ -222,7 +255,6 @@ public class Controller {
                 }
             }
         }
-        String currentLocation = player.getLocation();
         if (command[0].equals("ladder-up") || command[0].equals("ladder-down") || command[0].equals("north") || command[0].equals("south") || command[0].equals("east") || command[0].equals("west") || command[0].equals("u") || command[0].equals("d") || command[0].equals("n") || command[0].equals("s") || command[0].equals("e") || command[0].equals("w")) {
             player.move(command[0], roomsHashMap);
             if (roomsHashMap.get(player.getLocation()).getPuzzleHashMap().containsKey(player.getLocation())) {
