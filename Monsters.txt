@@ -10,7 +10,7 @@ Fight crow
 Cat
 A sneaky creature who uses its hidden claws to take down its prey.
 200
-SW_10 MTL_0 MTL_1 MTL_2 MTL_3 MTL_5 MTL_6
+SW_1 MTL_0 MTL_1 MTL_2 MTL_3 MTL_5 MTL_6
 Cat defeated
 Defeated by Cat
 Fight Cat
