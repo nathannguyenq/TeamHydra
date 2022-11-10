@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Puzzle {
+public class Puzzle
+{
     private String puzzleName;
     private String puzzleID;
     private String puzzleLocation;
@@ -57,7 +58,8 @@ public class Puzzle {
         this.puzzleReward = reward;
     }
 
-    public static HashMap<String, Puzzle> createPuzzles() {
+    public static HashMap<String, Puzzle> createPuzzles()
+    {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("puzzle.txt"));
             String line;
@@ -81,7 +83,8 @@ public class Puzzle {
                 pHash.put(pLocation, new Puzzle(pName, pID, pLocation, pAttempts, pDescription, pAnswers, pReward));
             }
             return pHash;
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             System.out.println("File not found");
         }
         return null;
