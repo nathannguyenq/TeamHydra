@@ -30,6 +30,8 @@ public class Controller {
     String prevRoom = "";
     String cuRoom = "";
     String prRoom = "";
+    String cRoom = "";
+    String pRoom = "";
 
     public static void main(String[] args) {
     }
@@ -38,7 +40,6 @@ public class Controller {
         String input = scanner.nextLine();
         input = input.toLowerCase();
         String[] command = input.split(" ");
-
 
         if (command[0].equals("add")) {
             if (command.length >= 2) {
@@ -360,6 +361,24 @@ public class Controller {
                 }
             }else {
                 roomsHashMap.get(player.getLocation()).setNeedsRightDirection(false);
+            }
+            if (roomsHashMap.get(player.getLocation()).getMonsterRequirement() == false) {
+                pRoom = cRoom;
+                cRoom = player.getLocation();
+            }
+            if (roomsHashMap.get(player.getLocation()).getMonsterRequirement() == true && !MonsterFlags.contains("Cat_Assassin")) {
+                while (roomsHashMap.get(player.getLocation()).getMonsterRequirement() == true) {
+                    System.out.println(roomsHashMap.get(player.getLocation()).getLockedDescription());
+                    view.leave(str);
+                    System.out.println();
+                    String lockInput = scanner.nextLine();
+                    lockInput = lockInput.toLowerCase();
+                    if (lockInput.equals("leave")) {
+                        player.setLocation(cRoom);
+                    }
+                }
+            }else {
+                roomsHashMap.get(player.getLocation()).setMonsterRequirement(false);
             }
             System.out.print(roomsHashMap.get(player.getLocation()).getRoomName());
             System.out.println(" ("+ roomsHashMap.get(player.getLocation()).getRoomID() +")");
