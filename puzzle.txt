@@ -1,6 +1,91 @@
-Add
-1
-SW_3
+Prison Maze Puzzle
+PZ_0
+SW_4
 3
-What is 1 + 1?
-2
+An elaborate puzzle where the player has to find the exit in a maze by selecting 3 different paths turning right or left("r,l,r" or "l,r,r" etc)
+r,l,r
+merchant's key
+Cipher Puzzle
+PZ_1
+SW_5
+3
+You see a sign it says A = 1, B = 2, C = 3, etc. what word corresponds to 18,15,4,5,14,20 and the area will change.
+rodent
+-
+Switch Puzzle
+PZ_2
+SW_8
+3
+You see a set of 4 switches, select which switch to pull and one of them might give you something for example "switch #"
+switch 1
+High-end Key
+Riddle Puzzle 1
+PZ_3_A
+SW_9
+3
+An ominous figure looms over you, it asks:“I am better than god, more evil than the devil, the rich people want me, the poor people have me, and if u eat me I’ll die. What am I?”
+Nothing
+Routine Physical Report
+Riddle Puzzle 2
+PZ_3_B
+SW_10
+3
+A weak shoddy figure raises it’s head and asks: You measure my life in hours and I serve you by expiring. I’m quick when I’m thin and slow when I’m fat. The wind is my enemy. What am I?
+Candle
+Routine Physical Report
+Riddle Puzzle 3
+PZ_3_C
+MTL_1
+3
+A small generous being kneels towards you it asks: White bird, featherless. Flying out of paradise. Flying over sea and land. Dying in my hand. What is it?
+Snow Flake
+Routine Physical Report
+Word Scramble Puzzle 1
+PZ_4_A
+MTL_2
+3
+You see a series of letters on a sign: "Elgku labpca" Try to decipher it.
+Black Plague
+Official Plague Report
+Word Scramble Puzzle 2
+PZ_4_B
+MTL_4
+3
+You see a series of letters on a sign: "vnaeMi glEdla" What does it say?
+Medieval England
+Official Plague Report
+Word Scramble Puzzle 3
+PZ_4_C
+MTL_6
+100
+You see a series of letters on a sign: "tAlot De hla" You know what to do.
+Death to All
+Official Plague Report
+Hidden Item Puzzle
+PZ_5
+MTU_0
+100
+There is a rusty nail in the floorboard that opens up. Open it up?
+You have earned Royal Cheese with 60 extra health points!
+Royal Cheese 2
+Trivia Puzzle 1
+PZ_6_A
+CL_0
+3
+Trivia Time! How many people died to the black plague?
+25 Million
+Official Plague Report
+Trivia Puzzle 2
+PZ_6_B
+CL_3
+3
+Trivia Time! Where did the Plague originate from?
+China
+Official Plague Report
+Trivia Puzzle 3
+PZ_6_C
+CL_5
+3
+Trivia Time! Who is the ruler of England at this time?
+Charles II
+Official Plague Report
