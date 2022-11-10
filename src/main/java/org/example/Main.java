@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.Controller.Controller;
+import org.example.Model.Monster;
 import org.example.View.View;
 
 import java.io.*;
@@ -11,6 +12,7 @@ public class Main {
     static Controller gamew;
 
     private static void saveGame() {
+    	
         try {
             FileOutputStream fos = new FileOutputStream("Adv.sav");
             ObjectOutputStream oos = new ObjectOutputStream(fos);

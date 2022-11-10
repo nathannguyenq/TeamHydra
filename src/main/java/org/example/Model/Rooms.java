@@ -102,7 +102,7 @@ public class Rooms {
         }
     }
 
-    public void linkMonsters(HashMap<String, Monster> monsterlink) {
+public void linkMonsters(HashMap<String, Monster> monsterlink) {
         for (Map.Entry<String, Monster> elt : monsterlink.entrySet()) {
             if (elt.getValue().getSpawnLocation().contains(roomID)) {
                 monsterHash.put(elt.getKey(), elt.getValue());

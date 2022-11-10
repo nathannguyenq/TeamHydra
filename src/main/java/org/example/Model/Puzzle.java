@@ -12,15 +12,17 @@ public class Puzzle {
     private String puzzleLocation;
     private int puzzleAttempts;
     private String puzzleDescription;
-    private String puzzleAnswer;
+    private ArrayList<String> puzzleAnswer;
+    private String puzzleReward;
 
-    public Puzzle(String puzzleNameC, String puzzleIDC, String puzzleLocationC, int puzzleAttemptsC, String puzzleDescriptionC, String puzzleAnswerC) {
-        puzzleName = puzzleNameC;
-        puzzleID = puzzleIDC;
-        puzzleLocation = puzzleLocationC;
-        puzzleAttempts = puzzleAttemptsC;
-        puzzleDescription = puzzleDescriptionC;
-        puzzleAnswer = puzzleAnswerC;
+    public Puzzle(String puzzleName, String puzzleID, String puzzleLocation, int puzzleAttempts, String puzzleDescription, ArrayList<String> puzzleAnswer, String puzzleReward) {
+        this.puzzleName = puzzleName;
+        this.puzzleID = puzzleID;
+        this.puzzleLocation = puzzleLocation;
+        this.puzzleAttempts = puzzleAttempts;
+        this.puzzleDescription = puzzleDescription;
+        this.puzzleAnswer = puzzleAnswer;
+        this.puzzleReward = puzzleReward;
     }
 
     public String getPuzzleName() {
@@ -43,8 +45,16 @@ public class Puzzle {
         return puzzleDescription;
     }
 
-    public String getPuzzleAnswer() {
+    public ArrayList<String> getPuzzleAnswer() {
         return puzzleAnswer;
+    }
+
+    public String getPuzzleReward() {
+        return puzzleReward;
+    }
+
+    public void setPuzzleReward(String reward) {
+        this.puzzleReward = reward;
     }
 
     public static HashMap<String, Puzzle> createPuzzles() {
@@ -53,15 +63,22 @@ public class Puzzle {
             String line;
             HashMap<String, Puzzle> pHash = new HashMap<>();
             while ((line = reader.readLine()) != null) {
+                ArrayList<String> pAnswers = new ArrayList<>();
 
                 String pName = line;
                 String pID = reader.readLine();
                 String pLocation = reader.readLine();
                 int pAttempts = Integer.parseInt(reader.readLine());
                 String pDescription = reader.readLine();
-                String pAnswer = reader.readLine();
+                String[] puzzle = reader.readLine().split(",");
+                for (int i = 0; i < puzzle.length; i++) {
+                    puzzle[i] = puzzle[i].trim();
+                    String tem = puzzle[i];
+                    pAnswers.add(tem);
+                }
+                String pReward = reader.readLine();
 
-                pHash.put(pLocation, new Puzzle(pName, pID, pLocation, pAttempts, pDescription, pAnswer));
+                pHash.put(pLocation, new Puzzle(pName, pID, pLocation, pAttempts, pDescription, pAnswers, pReward));
             }
             return pHash;
         } catch (IOException e) {

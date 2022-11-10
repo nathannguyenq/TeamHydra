@@ -39,16 +39,12 @@ public class Monster {
 
     @Override
     public String toString() {
-        return "Monster{" +
-                "name='" + name + '\'' +
-                ", mDescription='" + mDescription + '\'' +
-                ", HP=" + HP +
-                ", spawnLocation=" + spawnLocation +
-                ", winMessage='" + winMessage + '\'' +
-                ", lossMessage='" + lossMessage + '\'' +
-                ", enterMessage='" + enterMessage + '\'' +
-                ", goldReward=" + goldReward +
-                ", AttackDamage=" + AttackDamage +
+        return "{" +
+                "name ='" + name + '\'' +
+                ", Description ='" + mDescription + '\'' +
+                ", HP =" + HP +
+                ", goldReward =" + goldReward +
+                ", AttackDamage =" + AttackDamage +
                 '}';
     }
 
@@ -87,6 +83,11 @@ public class Monster {
     public int getAttackDamage() {
         return AttackDamage;
     }
+    
+//    public void setGoldReward(int goldReward) {
+//    	this.goldReward = goldReward;
+//    	
+//    }
 
     public static HashMap<String, Monster> createMonsters() {
 

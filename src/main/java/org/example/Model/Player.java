@@ -8,15 +8,21 @@ public class Player {
     private HashMap<String, Items> playerInventory = new HashMap<>();
     private HashMap<String, Items> playerEquipment = new HashMap<>();
     private int plyhealth;
-    private int plyattack;
+    private static int plyattack;
     private int plyMHealth;
+    private int plyMoney;
+    
+    
 
-    public Player(Integer health, Integer attack, Integer mHealth) {
+    public Player(Integer health, Integer attack, Integer mHealth, Integer plyMoney) {
         location = "SW_0";
         this.plyhealth = health;
         this.plyattack = attack;
         this.plyMHealth = mHealth;
+        this.plyMoney = plyMoney;
+        
     }
+    
 
     public String getLocation() {
         return location;
@@ -45,6 +51,15 @@ public class Player {
     public void setPlyMHealth(int plyMHealth) {
         this.plyMHealth = plyMHealth;
     }
+    
+    public int getPlyMoney() {
+        return plyMoney;
+    }
+
+    public void setplyMoney(int plyMoney) {
+        this.plyMoney = plyMoney;
+    }
+    
 
     public void getInventory() {
         if (playerInventory.isEmpty()) {
@@ -183,6 +198,10 @@ public class Player {
         }
     }
 
+    public void puzzleReward(Items str){
+        playerInventory.put(str.getiName(), str);
+    }
+
     public void explore(String item) {
         System.out.println(playerInventory.get(item).getiDescription());
     }
@@ -229,6 +248,9 @@ public class Player {
             System.out.println("You don't have " + itemName + " yet.");
         }
 
+    }
+    public void addItem(String item, Items value) {
+        playerInventory.put(item, value);
     }
 
     public void equip(String item, Map<String, Items> inventory) {
@@ -278,6 +300,11 @@ public class Player {
             }
             inventory_.remove(item);
         }
+    }
+    
+    public static int attack (int monsterHP) {
+    return monsterHP - plyattack;
+    
     }
 //    public void unequip(String item, Map<String,Items> equipment){
 //        Items temp = null;

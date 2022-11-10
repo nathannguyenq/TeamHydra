@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Controller {
     Scanner scanner = new Scanner(System.in);
     View view = new View();
-    Player player = new Player(100, 0, 100);
+    Player player = new Player(100, 0, 100, 0);
     String str = "";
     ArrayList<String> pStorage = new ArrayList<>();
     ArrayList<String> flag = new ArrayList<>();
@@ -23,6 +23,10 @@ public class Controller {
     HashMap<String, Monster> monsterHashMap = Monster.createMonsters();
     HashMap<String, NPC> npcHashMap = NPC.createNPC(itemsHashMap);
     HashMap<String, Rooms> roomsHashMap = Rooms.createRooms(itemsHashMap, puzzleHashMap, monsterHashMap, npcHashMap);
+
+    ArrayList<String> MonsterFlags = new ArrayList<>();
+
+
     String currRoom = "";
     String prevRoom = "";
     String cuRoom = "";
@@ -35,6 +39,22 @@ public class Controller {
         String input = scanner.nextLine();
         input = input.toLowerCase();
         String[] command = input.split(" ");
+
+
+        if (command[0].equals("add")) {
+            if (command.length >= 2) {
+                String temp = "";
+                for (int i = 1; i < command.length; i++) {
+                    temp = temp + command[i] + " ";
+                }
+                temp = temp.trim();
+
+                player.addItem(temp, itemsHashMap.get(temp));
+
+            } else {
+                view.invalid(str);
+            }
+        }
 
         if (command[0].equals("q") || command[0].equals("quit")) {
 
@@ -86,11 +106,12 @@ public class Controller {
                     rTotal--;
                     player.getPlayerInventory().get(temp).setInvAmount(rTotal);
                     player.dropOne(temp, roomsHashMap);
-                }
-                else {
+                } else if (roomsHashMap.get(player.getLocation()).getInventory().get(temp).getiAmount() == 1) {
+                    player.drop(temp, roomsHashMap);
+                } else {
                     view.invalid(str);
                 }
-            } 
+            }
             else {
                 view.invalid(str);
             }
@@ -283,17 +304,28 @@ public class Controller {
                 tempAttempt = roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleAttempts();
                 while (tempAttempt > 0 && !pStorage.contains(roomsHashMap.get(player.getLocation()).getRoomID())) {
                     System.out.println(roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleDescription());
-                    String Solution = roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleAnswer();
+                    String Solution = roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleAnswer().get(0);
                     String s = scanner.nextLine();
+                    String temp = roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward();
                     if (!s.equals(Solution)) {
-                        tempAttempt--;
-                        System.out.println("Wrong Answer Attempt(s) left: " + tempAttempt + '\n');
+                        tempAttempt++;
+                        System.out.println("Wrong Answer, this is your Attempt(s): " + tempAttempt + '\n');
 
                     }
-                    else {
-                        System.out.println("Puzzle Completed" + '\n');
-                        pStorage.add(roomsHashMap.get(player.getLocation()).getRoomID());
+                    if(!roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward().equals("-")){
+                            System.out.println("Puzzle Completed" + '\n');
+                            player.addItem(roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward(), itemsHashMap.get(roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward()));
+                            //player.getPlayerInventory().put(roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward(), new Items("1", str, "Item won from puzzle", "key", new ArrayList<String>(), 0, 0, 0, 0, 1, 1));
+                            roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward();
+                            System.out.println(temp);
+                            pStorage.add(roomsHashMap.get(player.getLocation()).getRoomID());
 
+
+                    } else if (roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward().equals("-")) {
+                        System.out.println("Puzzle Completed" + '\n');
+                        player.setLocation("SW_5");
+
+                        pStorage.add(roomsHashMap.get(player.getLocation()).getRoomID());
                     }
 
                 }
@@ -357,6 +389,120 @@ public class Controller {
             } else {
                 view.visited(str);
             }
+            
+            
+            
+            monsterHashMap.entrySet().forEach(entry -> {
+        
+                for (String num :  monsterHashMap.get(entry.getKey()).getSpawnLocation()) { 
+                	
+                    Scanner in = new Scanner(System.in);
+
+                	if(roomsHashMap.get(player.getLocation()).getRoomID().equals(num)) {
+                		
+
+                    	
+                    	if(!MonsterFlags.contains(num)) {
+                			System.out.println("Theres is a Monster in this Room, are you ready for this fight? YES or NO" );
+                			  String answer = in.nextLine();
+
+                			  
+                			  if(answer.equals("YES")) {
+                				  
+                				  
+                          		System.out.println("THE name of the Monster is: " + monsterHashMap.get(entry.getKey()).getName());
+                          		
+                          		while(monsterHashMap.get(entry.getKey()).getHP() > 0) {
+                          			
+                              		System.out.println("What command would you like to Use? attack, info or Run");
+                              		System.out.println("You will get hit after every Command");
+
+                      			     String battle = in.nextLine().toUpperCase();
+
+                              		if(battle.equals("ATTACK")) {
+                              		monsterHashMap.get(entry.getKey()).setHP((Player.attack(monsterHashMap.get(entry.getKey()).getHP()))); 
+
+                              			System.out.println("Current monster Hp = " + monsterHashMap.get(entry.getKey()).getHP() );
+                              		}
+                              		else if (battle.equals("INFO")) {
+                              			System.out.println(monsterHashMap.get(entry.getKey()).toString());
+
+                              		}
+                              		else if (battle.equals("RUN")) {
+                              			System.out.println(monsterHashMap.get(entry.getKey()).getLossMessage());
+                              			
+                              			
+                              			break;
+                              		}
+                              		
+                              		else if(player.getPlyhealth() < 20){
+                              			
+                              			System.out.println("You almost Dead go back !!!");
+                              			System.out.println(monsterHashMap.get(entry.getKey()).getLossMessage());
+
+
+                              			break;
+                              		
+                              		}
+                              		
+                              		else {
+                              			System.out.println("Wrong Input");
+                              		}
+                              		
+                              		player.setPlyhealth(player.getPlyhealth()-monsterHashMap.get(entry.getKey()).getAttackDamage());
+                              		
+                              		System.out.println("The monster just Hit you your current HP is " + player.getPlyhealth());
+                              		
+                              		
+                              		if(monsterHashMap.get(entry.getKey()).getHP() < 0) {
+                                  		MonsterFlags.add(num);
+                                  		player.setplyMoney(player.getPlyMoney() + monsterHashMap.get(entry.getKey()).getGoldReward());
+                                  		
+                                  		System.out.println(monsterHashMap.get(entry.getKey()).getWinMessage());
+                              			
+                              			
+
+
+                              		}
+                              		
+
+                          		}
+                          		
+                          		
+                				  
+                			  }
+                			  else {
+                				  System.out.println("i Hope your ready Next Time");
+                			  }
+                			  
+                			 
+                			
+
+                		}else {
+                    		System.out.println("There used to be a Monster Here, You already kill " + monsterHashMap.get(entry.getKey()).getName());
+
+                		}
+
+                	}
+                	//System.out.println(num);
+
+                	
+                	}
+                 		
+                });
+            
+//            monsterHashMap.entrySet().forEach(entry -> {
+//            	//MonsterHashMap.get(entry.getKey()).getSpawnLocation();
+//            	
+//            	
+//            
+//                System.out.print(entry.getKey());
+//                System.out.println(" " +monsterHashMap.get(entry.getKey()).getSpawnLocation());
+//                
+//                System.out.print(" ");
+//            });
+            
+
             System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
 
         }

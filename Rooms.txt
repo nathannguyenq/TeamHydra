@@ -64,12 +64,12 @@ You come upon a DOOR that you do not seem to have the key for. You should probab
 skeleton key
 SW_7
 Storage Closet
-ture
+true
 false
 UNLOCKED You dig through your bag and find the Merchant’s Key, which seems to be a perfect fit for the door. You open it, but there doesn’t seem to be much in this room. Why would someone go through the trouble of locking this door?There’s a doorway to the EAST.
-not locked
+You come upon a DOOR that you do not seem to have the key for. You decide to turn back to the EAST.
 -,-,-,-,HUB_0,-
-merchant’s key
+merchant's key
 SW_8
 Central Sewers
 false
