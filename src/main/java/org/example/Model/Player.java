@@ -198,6 +198,10 @@ public class Player {
         }
     }
 
+    public void puzzleReward(Items str){
+        playerInventory.put(str.getiName(), str);
+    }
+
     public void explore(String item) {
         System.out.println(playerInventory.get(item).getiDescription());
     }

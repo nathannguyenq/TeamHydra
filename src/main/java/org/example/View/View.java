@@ -11,7 +11,10 @@ public class View {
         System.out.println("\t" + "\t" + "#############################");
         System.out.println("\n");
         System.out.println("----------------------------------------");
+        System.out.println();
+        System.out.println("The room is dark and it is hard to see your way around. However, through the blackness,\nyou manage to make out the figure of what seems to be a doorway to the EAST.");
         System.out.println("Which way do you want to go? (N,E,S,W)" + " or you can quit (q)");
+
     }
 
     public void invalid(String str) {

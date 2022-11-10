@@ -100,7 +100,7 @@ public class Controller {
                 else {
                     view.invalid(str);
                 }
-            } 
+            }
             else {
                 view.invalid(str);
             }
@@ -274,17 +274,27 @@ public class Controller {
                 tempAttempt = roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleAttempts();
                 while (tempAttempt > 0 && !pStorage.contains(roomsHashMap.get(player.getLocation()).getRoomID())) {
                     System.out.println(roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleDescription());
-                    String Solution = roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleAnswer();
+                    String Solution = roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleAnswer().get(0);
                     String s = scanner.nextLine();
+                    String temp = roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward();
                     if (!s.equals(Solution)) {
-                        tempAttempt--;
-                        System.out.println("Wrong Answer Attempt(s) left: " + tempAttempt + '\n');
+                        tempAttempt++;
+                        System.out.println("Wrong Answer, this is your Attempt(s): " + tempAttempt + '\n');
 
                     }
-                    else {
-                        System.out.println("Puzzle Completed" + '\n');
-                        pStorage.add(roomsHashMap.get(player.getLocation()).getRoomID());
+                    if(!roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward().equals("-")){
+                            System.out.println("Puzzle Completed" + '\n');
+                            player.getPlayerInventory().put(roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward(), new Items("1", str, "Item won from puzzle", "key", new ArrayList<String>(), 0, 0, 0, 0, 1, 1));
+                            roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward();
+                            System.out.println(temp);
+                            pStorage.add(roomsHashMap.get(player.getLocation()).getRoomID());
 
+
+                    } else if (roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward().equals("-")) {
+                        System.out.println("Puzzle Completed" + '\n');
+                        player.setLocation("SW_5");
+
+                        pStorage.add(roomsHashMap.get(player.getLocation()).getRoomID());
                     }
 
                 }
