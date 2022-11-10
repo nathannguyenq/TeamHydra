@@ -13,15 +13,15 @@ public class NPC {
     private ArrayList<String> nDialogue;
     private ArrayList<String> specDialogue;
 
-    private HashMap<String, Items> itemHash = new HashMap<>();
+    private ArrayList<String> npcInventory;
 
-    public NPC(String nName, String nID, String nLocation, ArrayList<String> nDialogue, ArrayList<String> specDialogue, HashMap<String, Items> itemHash) {
+    public NPC(String nName, String nID, String nLocation, ArrayList<String> nDialogue, ArrayList<String> specDialogue, ArrayList<String> npcInventory) {
         this.nName = nName;
         this.nID = nID;
         this.nLocation = nLocation;
         this.nDialogue = nDialogue;
         this.specDialogue = specDialogue;
-        this.itemHash = itemHash;
+        this.npcInventory = npcInventory;
     }
 
     public String getnName() {
@@ -44,7 +44,11 @@ public class NPC {
         return specDialogue;
     }
 
-    public static HashMap<String, NPC> createNPC(HashMap<String, Items> itemHash) {
+    public ArrayList<String> getNpcInventory() {
+        return npcInventory;
+    }
+
+    public static HashMap<String, NPC> createNPC() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("npc.txt"));
             String line;
@@ -53,6 +57,7 @@ public class NPC {
 
                 ArrayList<String> normDialogue = new ArrayList<>();
                 ArrayList<String> specDialogue = new ArrayList<>();
+                ArrayList<String> npcInv = new ArrayList<>();
 
                 String nName = line.toLowerCase();
                 String nID = reader.readLine();
@@ -69,7 +74,13 @@ public class NPC {
                     String temp = sDialogue[i];
                     specDialogue.add(temp);
                 }
-                npcHash.put(nName, new NPC(nName, nID, nLocation, normDialogue, specDialogue, itemHash));
+                String[] Inv = reader.readLine().split("~");
+                for (int i = 0; i < Inv.length; i++) {
+                    Inv[i] = Inv[i].trim();
+                    String tempp = Inv[i];
+                    npcInv.add(tempp);
+                }
+                npcHash.put(nName, new NPC(nName, nID, nLocation, normDialogue, specDialogue, npcInv));
             }
             return npcHash;
         } catch (IOException e) {

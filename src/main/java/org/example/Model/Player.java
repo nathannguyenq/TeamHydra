@@ -2,6 +2,7 @@ package org.example.Model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Player {
     private static String location;
@@ -10,12 +11,15 @@ public class Player {
     private int plyhealth;
     private int plyattack;
     private int plyMHealth;
+    private int plyMoney;
+    public static String playerName;
 
-    public Player(Integer health, Integer attack, Integer mHealth) {
+    public Player(Integer health, Integer attack, Integer mHealth, Integer plyMoney) {
         location = "SW_0";
         this.plyhealth = health;
         this.plyattack = attack;
         this.plyMHealth = mHealth;
+        this.plyMoney = plyMoney;
     }
 
     public String getLocation() {
@@ -46,22 +50,27 @@ public class Player {
         this.plyMHealth = plyMHealth;
     }
 
+    public static void EnterPlayerName(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println();
+        System.out.println("Please enter player name: ");
+        playerName = sc.nextLine().toUpperCase();
+    }
+
+    public int getPlyMoney() {
+        return plyMoney;
+    }
+
+    public void setPlyMoney(int plyMoney) {
+        this.plyMoney = plyMoney;
+    }
+
     public void getInventory() {
         if (playerInventory.isEmpty()) {
             System.out.println("No items currently in inventory.");
         } else {
             for (Map.Entry<String, Items> elt : playerInventory.entrySet()) {
                 System.out.println(elt.getKey() + " [" + playerInventory.get(elt.getKey()).getInvAmount() + "]");
-            }
-        }
-    }
-
-    public void getEquipment() {
-        if (playerInventory.isEmpty()) {
-            System.out.println("Nothing Equipped");
-        } else {
-            for (Map.Entry<String, Items> elt : playerEquipment.entrySet()) {
-                System.out.println(elt.getKey());
             }
         }
     }
@@ -152,6 +161,9 @@ public class Player {
         }
     }
 
+    public void remove(String item) {
+        playerInventory.remove(item);
+    }
     public void drop(String item, HashMap<String, Rooms> rooms) {
         Items temp = null;
 
@@ -183,6 +195,10 @@ public class Player {
         }
     }
 
+    public void addItem(String item, Items value) {
+        playerInventory.put(item, value);
+    }
+
     public void explore(String item) {
         System.out.println(playerInventory.get(item).getiDescription());
     }
@@ -207,16 +223,12 @@ public class Player {
         rooms.get(location).look();
     }
 
-    public void shop() {
-
+    public int maxAmount(String item) {
+        return playerInventory.get(item).getmHealth();
     }
 
     public HashMap<String, Items> getPlayerInventory() {
         return playerInventory;
-    }
-
-    public HashMap<String, Items> getPlayerEquipment() {
-        return playerEquipment;
     }
 
     public void use(String itemName, Map<String,Items> playerInventory) {

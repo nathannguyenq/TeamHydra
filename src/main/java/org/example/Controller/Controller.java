@@ -1,5 +1,6 @@
 package org.example.Controller;
 
+import com.sun.security.jgss.GSSUtil;
 import org.example.Model.*;
 import org.example.View.View;
 
@@ -9,10 +10,12 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
+import static org.example.Main.*;
+
 public class Controller {
     Scanner scanner = new Scanner(System.in);
     View view = new View();
-    Player player = new Player(100, 0, 100);
+    Player player = new Player(100, 0, 100, 0);
     String str = "";
     ArrayList<String> pStorage = new ArrayList<>();
     ArrayList<String> flag = new ArrayList<>();
@@ -21,7 +24,7 @@ public class Controller {
     HashMap<String, Items> itemsHashMap = Items.createItems();
     HashMap<String, Puzzle> puzzleHashMap = Puzzle.createPuzzles();
     HashMap<String, Monster> monsterHashMap = Monster.createMonsters();
-    HashMap<String, NPC> npcHashMap = NPC.createNPC(itemsHashMap);
+    HashMap<String, NPC> npcHashMap = NPC.createNPC();
     HashMap<String, Rooms> roomsHashMap = Rooms.createRooms(itemsHashMap, puzzleHashMap, monsterHashMap, npcHashMap);
     String currRoom = "";
     String prevRoom = "";
@@ -34,8 +37,31 @@ public class Controller {
         input = input.toLowerCase();
         String[] command = input.split(" ");
 
-        if (command[0].equals("q") || command[0].equals("quit")) {
+        if (command[0].equals("add")) {
+            if (command.length >= 2) {
+                String temp = "";
+                for (int i = 1; i < command.length; i++) {
+                    temp = temp + command[i] + " ";
+                }
+                temp = temp.trim();
 
+                player.addItem(temp, itemsHashMap.get(temp));
+
+            } else {
+                view.invalid(str);
+            }
+        } else if (command[0].equals("load")) {
+            loadGame();
+
+        } else if (command[0].equals("save")) {
+            saveGame();
+
+        } else if (command[0].equals("new")) {
+            newGame();
+
+        }
+        if (command[0].equals("q") || command[0].equals("quit")) {
+            view.quitGameView(str);
         } else if (command[0].equals("explore")) {
             if (command.length == 1) {
                 player.explore(roomsHashMap);
@@ -57,7 +83,6 @@ public class Controller {
                     int rTotal = player.invAmount(temp);
                     rTotal++;
                     player.getPlayerInventory().get(temp).setInvAmount(rTotal);
-                    System.out.println(player.invAmount(temp));
                 }
             } else {
                 view.invalid(str);
@@ -111,15 +136,20 @@ public class Controller {
         } else if (command.length == 1) {
             if (command[0].equals("inventory")) {
                 player.getInventory();
+                view.chooseDirection(str);
             }
             if (command[0].equals("stats")) {
-                System.out.println("Player Attack: " + player.getPlyattack());
-                System.out.println("Player Health: " + player.getPlyhealth());
-                System.out.println("Player Max Health: " + player.getPlyMHealth());
-//                System.out.println(player.getEquipment());
+                view.stat1(str);
+                System.out.println(player.getPlyattack());
+                view.stat2(str);
+                System.out.println(player.getPlyhealth());
+                view.stat3(str);
+                System.out.println(player.getPlyMHealth());
+                view.chooseDirection(str);
             }
             if (command[0].equals("help")) {
-//                System.out.println();
+                view.help();
+                view.chooseDirection(str);
             }
         } else if (command[0].equals("equip") || command[0].equals("eq")) {
             if (command.length >= 2) {
@@ -138,11 +168,12 @@ public class Controller {
                     player.wear(temp,player.getPlayerInventory());
                 }
                 else {
-                    System.out.println("You can not equip " + temp);
+                    view.noEquip(command[1]);
                 }
             }
             else {
-                System.out.println("You do not have " + command[1]);
+                view.doNotHave(str);
+                System.out.println(command[1]);
             }
         }
 
@@ -160,10 +191,12 @@ public class Controller {
                     player.wear(temp,player.getPlayerInventory());
                 }
                 else {
-                    System.out.println("You can not wear " + temp);
+                    view.noWear(str);
+                    System.out.println(temp);
                 }
             } else {
-                System.out.println("You do not have " + command[1]);
+                view.doNotHave(str);
+                System.out.println(command[1]);
             }
         }
         else if (command[0].equals("consume") || command[0].equals("eat")) {
@@ -180,10 +213,12 @@ public class Controller {
                     player.heal(temp, player.getPlayerInventory());
                 }
                 else {
-                    System.out.println("You can't eat " + temp);
+                    view.noEat(str);
+                    System.out.println(temp);
                 }
             } else {
-                System.out.println("You do not have " + command[1]);
+                view.doNotHave(str);
+                System.out.println(command[1]);
             }
         }
         else if (command[0].equals("read")) {
@@ -200,10 +235,35 @@ public class Controller {
                     player.explore(temp);
                 }
                 else {
-                    System.out.println("You can't read " + temp);
+                    view.noRead(str);
+                    System.out.println(temp);
                 }
             } else {
-                System.out.println("You do not have " + command[1]);
+                view.doNotHave(str);
+                System.out.println(command[1]);
+            }
+        }
+        else if (command[0].equals("use")) {
+            if (command.length >= 2) {
+                String temp = "";
+                for (int i = 1; i < command.length; i++) {
+                    temp = temp + command[i] + " ";
+                }
+                temp = temp.trim();
+                if (!player.getPlayerInventory().containsKey(temp)) {
+                    view.invalid(str);
+                }
+                else if (player.itemType(temp).equals("Upgrade")) {
+                    player.setPlyMHealth(player.getPlyMHealth() + player.maxAmount(temp));
+                    player.remove(temp);
+                }
+                else {
+                    view.doNotHave(str);
+                    System.out.println(command[1]);
+                }
+            } else {
+                view.doNotHave(str);
+                System.out.println(command[1]);
             }
         }
 //        else if (command[0].equals("unequip") || command[0].equals("un")) {
@@ -225,13 +285,15 @@ public class Controller {
                 }
                 temp = temp.trim();
                 if (!roomsHashMap.get(player.getLocation()).getNpcHash().containsKey(temp)) {
-                    System.out.println(temp + " is not here");
+                    System.out.print(temp);
+                    view.notHere(str);
                 }
-                else if (roomsHashMap.get(player.getLocation()).getNpcHash().containsKey(temp)) {
+                else if (roomsHashMap.get(player.getLocation()).getNpcHash().containsKey(temp))
+                {
                     Random dia = new Random();
                     int num = dia.nextInt(4);
                     System.out.println(roomsHashMap.get(player.getLocation()).getNpcHash().get("quintella").getnDialogue().get(num));
-                    System.out.println("\"shop\" to shop with Quintella");
+                    view.slQ(str);
                     while (roomsHashMap.get(player.getLocation()).getNpcHash().containsKey(temp)) {
                         String t = scanner.nextLine();
                         if (t.equals("leave")) {
@@ -240,19 +302,83 @@ public class Controller {
                             break;
                         }
                         if (t.equals("shop")) {
-                            System.out.println("So what'll it be...");
+                            view.slQ1(str);
+                            System.out.println(roomsHashMap.get(player.getLocation()).getNpcHash().get("quintella").getNpcInventory());
                             while (roomsHashMap.get(player.getLocation()).getNpcHash().containsKey(temp)) {
-//                                if (t.equals("leave")) {
-//                                    System.out.println(roomsHashMap.get(player.getLocation()).getRoomName());
-//                                    System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
-//                                    break;
-//                                }
+                                String t2 = scanner.nextLine();
+                                System.out.println(roomsHashMap.get(player.getLocation()).getNpcHash().get("quintella").getNpcInventory());
+                                view.slQ2(str);
+                                if (t2.equals("leave")) {
+                                    view.slQ3(str);
+                                    view.slQ(str);
+                                    break;
+                                }
+                                if (t2.equals("buy")) {
+                                    System.out.println("Items");
+                                }
+                            }
+                        }
+                        if (t.equals("talk")) {
+                            Random ran = new Random();
+                            int num2 = ran.nextInt(4);
+                            System.out.println(roomsHashMap.get(player.getLocation()).getNpcHash().get("quintella").getnDialogue().get(num2));
+                            view.slQ(str);
+                        }
+                        if (t.equals("special")) {
+                            if (player.getPlayerInventory().containsKey("official plague report") && !player.getPlayerInventory().containsKey("routine physical report")) {
+                                System.out.println("...I always knew there was something off about this whole situation. The people started hunting our kind down ever the start of this whole mess and all this time it was for nothing. ....Just so he can stay sitting pretty eh? He deserves everything that’s coming to him.");
+                            }
+                            else if (player.getPlayerInventory().containsKey("official plague report") && player.getPlayerInventory().containsKey("routine physical report")) {
+                                System.out.println("Hehe....so the emperor isn’t wearing clothes after all. I think I may have something available for us to take advantage of this situation. If you can find a way to get that blasted king to eat it he won’t be an issue anymore.");
+                                player.addItem("ricin pouch", itemsHashMap.get("ricin pouch"));
+                            }
+                            else {
+                                System.out.println("Nothing Happens");
                             }
                         }
                     }
                 }
+                else if (roomsHashMap.get(player.getLocation()).getNpcHash().containsKey(temp)) {
+                    Random dia = new Random();
+                    int num = dia.nextInt(4);
+                    System.out.println(roomsHashMap.get(player.getLocation()).getNpcHash().get("rena").getnDialogue().get(num));
+                    view.slR(str);
+                    while (roomsHashMap.get(player.getLocation()).getNpcHash().containsKey(temp)) {
+                        String t = scanner.nextLine();
+                        if (t.equals("leave")) {
+                            System.out.println(roomsHashMap.get(player.getLocation()).getRoomName());
+                            System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
+                            break;
+                        }
+                        if (t.equals("shop")) {
+                            view.slQ1(str);
+                            System.out.println(roomsHashMap.get(player.getLocation()).getNpcHash().get("rena").getNpcInventory());
+
+                            while (roomsHashMap.get(player.getLocation()).getNpcHash().containsKey(temp)) {
+                                String t2 = scanner.nextLine();
+                                System.out.println(roomsHashMap.get(player.getLocation()).getNpcHash().get("rena").getNpcInventory());
+                                view.slQ2(str);
+                                if (t2.equals("leave")) {
+                                    view.slQ3(str);
+                                    view.slR(str);
+                                    break;
+                                }
+                                if (t2.equals("buy")) {
+                                    System.out.println("Items");
+                                }
+                            }
+                        }
+                        if (t.equals("talk")) {
+                            Random ran = new Random();
+                            int num2 = ran.nextInt(4);
+                            System.out.println(roomsHashMap.get(player.getLocation()).getNpcHash().get("rena").getnDialogue().get(num2));
+                            view.slR(str);
+                        }
+                    }
+                }
                 else {
-                    System.out.println(temp + " is not here");
+                    System.out.println(temp);
+                    view.notHere(str);
                 }
             } else {
                 view.invalid(str);
@@ -271,7 +397,7 @@ public class Controller {
                     System.out.println(roomsHashMap.get(player.getLocation()).getRoomDescription());
                 }
                 else{
-                    System.out.println("you havent been thee before");
+                    view.notVisited(str);
                 }
             }
         }
@@ -281,14 +407,13 @@ public class Controller {
                 tempAttempt = roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleAttempts();
                 while (tempAttempt > 0 && !pStorage.contains(roomsHashMap.get(player.getLocation()).getRoomID())) {
                     System.out.println(roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleDescription());
-                    String Solution = roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleAnswer();
+                    String Solution = roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleAnswer().get(0);
                     String s = scanner.nextLine();
                     if (!s.equals(Solution)) {
                         tempAttempt--;
                         System.out.println("Wrong Answer Attempt(s) left: " + tempAttempt + '\n');
 
-                    }
-                    else {
+                    } else {
                         System.out.println("Puzzle Completed" + '\n');
                         pStorage.add(roomsHashMap.get(player.getLocation()).getRoomID());
 

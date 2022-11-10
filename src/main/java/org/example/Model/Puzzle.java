@@ -12,9 +12,9 @@ public class Puzzle {
     private String puzzleLocation;
     private int puzzleAttempts;
     private String puzzleDescription;
-    private String puzzleAnswer;
+    private ArrayList<String> puzzleAnswer;
 
-    public Puzzle(String puzzleNameC, String puzzleIDC, String puzzleLocationC, int puzzleAttemptsC, String puzzleDescriptionC, String puzzleAnswerC) {
+    public Puzzle(String puzzleNameC, String puzzleIDC, String puzzleLocationC, int puzzleAttemptsC, String puzzleDescriptionC, ArrayList<String> puzzleAnswerC) {
         puzzleName = puzzleNameC;
         puzzleID = puzzleIDC;
         puzzleLocation = puzzleLocationC;
@@ -43,7 +43,7 @@ public class Puzzle {
         return puzzleDescription;
     }
 
-    public String getPuzzleAnswer() {
+    public ArrayList<String> getPuzzleAnswer() {
         return puzzleAnswer;
     }
 
@@ -54,14 +54,20 @@ public class Puzzle {
             HashMap<String, Puzzle> pHash = new HashMap<>();
             while ((line = reader.readLine()) != null) {
 
+                ArrayList<String> pAnswers = new ArrayList<>();
+
                 String pName = line;
                 String pID = reader.readLine();
                 String pLocation = reader.readLine();
                 int pAttempts = Integer.parseInt(reader.readLine());
                 String pDescription = reader.readLine();
-                String pAnswer = reader.readLine();
-
-                pHash.put(pLocation, new Puzzle(pName, pID, pLocation, pAttempts, pDescription, pAnswer));
+                String[] puzzle = reader.readLine().split(",");
+                for (int i = 0; i < puzzle.length; i++) {
+                    puzzle[i] = puzzle[i].trim();
+                    String tem = puzzle[i];
+                    pAnswers.add(tem);
+                }
+                pHash.put(pLocation, new Puzzle(pName, pID, pLocation, pAttempts, pDescription, pAnswers));
             }
             return pHash;
         } catch (IOException e) {
