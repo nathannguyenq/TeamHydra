@@ -2,8 +2,8 @@ Prison Maze Puzzle
 PZ_0
 SW_4
 3
-An elaborate multipathed puzzle where the player has to find the exit in a maze by turning right and left
-right,left,left,right,left,right
+An elaborate puzzle where the player has to find the exit in a maze by selecting 3 different paths turning right or left("r,l,r" or "l,r,r" etc)
+right,left,left
 merchant's key
 Cipher Puzzle
 PZ_1
@@ -15,9 +15,9 @@ rodent
 Switch Puzzle
 PZ_2
 SW_8
-3
-You see a set of 4 switches, they could be useful for something. Try pulling some of the switches
-Pull switch 1, Pull switch 4,Leave switch 2,Leave switch 3
+2
+You see a set of 4 switches, Try pulling some of the switches and one of them might give you something
+Pull switch 1
 High-end Key
 Riddle Puzzle 1
 PZ_3_A
