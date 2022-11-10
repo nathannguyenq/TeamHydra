@@ -18,6 +18,7 @@ public class Rooms {
     private String lockedDescription = "";
     private String[] neighbor;
     private String lockedRequirement = "";
+    private boolean monsterRequirement = false;
 
 
 
@@ -27,8 +28,8 @@ public class Rooms {
     private HashMap<String, NPC> npcHash = new HashMap<>();
 
 
-    public Rooms(String id, String roomName, boolean locked, String roomDescription, String lockedDescription, String[] neighbor,
-                 String lockedRequirement, HashMap<String, Items> items, HashMap<String, Puzzle> puzzles,HashMap<String, Monster> monsters, HashMap<String, NPC> NPC) {
+    public Rooms(String id, String roomName, boolean locked, boolean needsRightDirection, String roomDescription, String lockedDescription, String[] neighbor,
+                 String lockedRequirement, boolean monsterRequirement, HashMap<String, Items> items, HashMap<String, Puzzle> puzzles,HashMap<String, Monster> monsters, HashMap<String, NPC> NPC) {
 
         this.roomID = id;
         this.roomName = roomName;
@@ -38,6 +39,7 @@ public class Rooms {
         this.lockedDescription = lockedDescription;
         this.neighbor = neighbor;
         this.lockedRequirement = lockedRequirement;
+        this.monsterRequirement = monsterRequirement;
 
 
         linkItems(items);
@@ -83,6 +85,14 @@ public class Rooms {
 
     public void setNeedsRightDirection(boolean needsRightDirection) {
         this.needsRightDirection = needsRightDirection;
+    }
+
+    public boolean getMonsterRequirement() {
+        return monsterRequirement;
+    }
+
+    public void setMonsterRequirement(boolean monsterRequirement) {
+        this.monsterRequirement = monsterRequirement;
     }
 
     public void linkItems(HashMap<String, Items> items) {
@@ -163,8 +173,8 @@ public void linkMonsters(HashMap<String, Monster> monsterlink) {
                     neighbors[i] = neighbors[i].trim();
                 }
                 String lockedRequirement = reader.readLine();
-
-                rHash.put(id, new Rooms(id, name, locked, description, lockedDescription, neighbors, lockedRequirement, itemHash, puzzleHash, monsterHash, npcHash));
+                boolean monsterRequirement = Boolean.parseBoolean(reader.readLine());
+                rHash.put(id, new Rooms(id, name, locked, needsRightDirection, description, lockedDescription, neighbors, lockedRequirement, monsterRequirement, itemHash, puzzleHash, monsterHash, npcHash));
             }
             return rHash;
         } catch (IOException e) {

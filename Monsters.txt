@@ -52,13 +52,13 @@ Defeated by Rat_Thug
 Fight Rat_Thug
 25
 10
-Cat_Assassing
+Cat_Assassin
 A well trained assassin armed with a sharp dagger. The king's last line of defense.
 400
 CU_4
-Cat_Assassing defeated
-Defeated by Cat_Assassing
-Fight Cat_Assassing
+Cat_Assassin defeated
+Defeated by Cat_Assassin
+Fight Cat_Assassin
 50
 20
 King
