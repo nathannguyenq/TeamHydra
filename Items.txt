@@ -63,7 +63,7 @@ Key
 0
 0
 1
-0
+1
 IT_6
 ricin pouch
 Ricin is a deadly poison derived from castor bean plants.
@@ -74,7 +74,7 @@ Weapon
 0
 0
 1
-0
+1
 IT_7
 standard armor upgrade kit 1
 Standard quality armor upgrade
@@ -145,13 +145,13 @@ IT_13
 official plague report
 A note which reveals the truth of the cause of the plague.
 Document
-SW_2
+-
 0
 0
 0
 0
 1
-0
+1
 IT_14
 routine physical report
 reveals that the King is in already poor health condition.
@@ -162,7 +162,7 @@ Document
 0
 0
 1
-0
+1
 IT_15
 skeleton key
 Unlocks door in sewer.
@@ -173,7 +173,7 @@ Key
 0
 0
 1
-0
+1
 IT_16
 merchant's key
 Unlocks door in the Sewer Hub.

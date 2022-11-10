@@ -2,6 +2,7 @@ package org.example.Model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Player {
     private static String location;
@@ -11,8 +12,7 @@ public class Player {
     private static int plyattack;
     private int plyMHealth;
     private int plyMoney;
-    
-    
+    public static String playerName;
 
     public Player(Integer health, Integer attack, Integer mHealth, Integer plyMoney) {
         location = "SW_0";
@@ -20,7 +20,6 @@ public class Player {
         this.plyattack = attack;
         this.plyMHealth = mHealth;
         this.plyMoney = plyMoney;
-        
     }
     
 
@@ -51,15 +50,26 @@ public class Player {
     public void setPlyMHealth(int plyMHealth) {
         this.plyMHealth = plyMHealth;
     }
-    
-    public int getPlyMoney() {
-        return plyMoney;
-    }
 
     public void setplyMoney(int plyMoney) {
         this.plyMoney = plyMoney;
     }
     
+
+    public static void EnterPlayerName(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println();
+        System.out.println("Please enter player name: ");
+        playerName = sc.nextLine().toUpperCase();
+    }
+
+    public int getPlyMoney() {
+        return plyMoney;
+    }
+
+    public void setPlyMoney(int plyMoney) {
+        this.plyMoney = plyMoney;
+    }
 
     public void getInventory() {
         if (playerInventory.isEmpty()) {
@@ -67,16 +77,6 @@ public class Player {
         } else {
             for (Map.Entry<String, Items> elt : playerInventory.entrySet()) {
                 System.out.println(elt.getKey() + " [" + playerInventory.get(elt.getKey()).getInvAmount() + "]");
-            }
-        }
-    }
-
-    public void getEquipment() {
-        if (playerInventory.isEmpty()) {
-            System.out.println("Nothing Equipped");
-        } else {
-            for (Map.Entry<String, Items> elt : playerEquipment.entrySet()) {
-                System.out.println(elt.getKey());
             }
         }
     }
@@ -167,6 +167,9 @@ public class Player {
         }
     }
 
+    public void remove(String item) {
+        playerInventory.remove(item);
+    }
     public void drop(String item, HashMap<String, Rooms> rooms) {
         Items temp = null;
 
@@ -197,7 +200,6 @@ public class Player {
             System.out.println("You don't have " + item + " yet.");
         }
     }
-
     public void puzzleReward(Items str){
         playerInventory.put(str.getiName(), str);
     }
@@ -226,16 +228,12 @@ public class Player {
         rooms.get(location).look();
     }
 
-    public void shop() {
-
+    public int maxAmount(String item) {
+        return playerInventory.get(item).getmHealth();
     }
 
     public HashMap<String, Items> getPlayerInventory() {
         return playerInventory;
-    }
-
-    public HashMap<String, Items> getPlayerEquipment() {
-        return playerEquipment;
     }
 
     public void use(String itemName, Map<String,Items> playerInventory) {
