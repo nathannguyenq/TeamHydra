@@ -19,20 +19,13 @@ public class Controller {
 
     HashMap<String, Items> itemsHashMap = Items.createItems();
     HashMap<String, Puzzle> puzzleHashMap = Puzzle.createPuzzles();
-<<<<<<< HEAD
     HashMap<String, Monster> monsterHashMap = new HashMap<>();
     HashMap<String, NPC> npcHashMap = NPC.createNPC(itemsHashMap);
     HashMap<String, Rooms> roomsHashMap = Rooms.createRooms(itemsHashMap, puzzleHashMap, monsterHashMap, npcHashMap);
-=======
 
-    HashMap<String, Monster> monsterHashMap = Monster.createMonsters();
-    
-    
-    HashMap<String, Rooms> roomsHashMap = Rooms.createRooms(itemsHashMap, puzzleHashMap, monsterHashMap);
     ArrayList<String> MonsterFlags = new ArrayList<>();
 
-    
->>>>>>> b4e706630001ef67228ec5d60a877088218c19fc
+
     String currRoom = "";
     String prevRoom = "";
     String cuRoom = "";
@@ -45,6 +38,22 @@ public class Controller {
         String input = scanner.nextLine();
         input = input.toLowerCase();
         String[] command = input.split(" ");
+
+
+        if (command[0].equals("add")) {
+            if (command.length >= 2) {
+                String temp = "";
+                for (int i = 1; i < command.length; i++) {
+                    temp = temp + command[i] + " ";
+                }
+                temp = temp.trim();
+
+                player.addItem(temp, itemsHashMap.get(temp));
+
+            } else {
+                view.invalid(str);
+            }
+        }
 
         if (command[0].equals("q") || command[0].equals("quit")) {
 
@@ -96,8 +105,9 @@ public class Controller {
                     rTotal--;
                     player.getPlayerInventory().get(temp).setInvAmount(rTotal);
                     player.dropOne(temp, roomsHashMap);
-                }
-                else {
+                } else if (roomsHashMap.get(player.getLocation()).getInventory().get(temp).getiAmount() == 1) {
+                    player.drop(temp, roomsHashMap);
+                } else {
                     view.invalid(str);
                 }
             }
@@ -284,7 +294,8 @@ public class Controller {
                     }
                     if(!roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward().equals("-")){
                             System.out.println("Puzzle Completed" + '\n');
-                            player.getPlayerInventory().put(roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward(), new Items("1", str, "Item won from puzzle", "key", new ArrayList<String>(), 0, 0, 0, 0, 1, 1));
+                            player.addItem(roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward(), itemsHashMap.get(roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward()));
+                            //player.getPlayerInventory().put(roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward(), new Items("1", str, "Item won from puzzle", "key", new ArrayList<String>(), 0, 0, 0, 0, 1, 1));
                             roomsHashMap.get(player.getLocation()).getPuzzleHashMap().get(player.getLocation()).getPuzzleReward();
                             System.out.println(temp);
                             pStorage.add(roomsHashMap.get(player.getLocation()).getRoomID());

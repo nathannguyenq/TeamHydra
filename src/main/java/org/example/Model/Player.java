@@ -249,6 +249,9 @@ public class Player {
         }
 
     }
+    public void addItem(String item, Items value) {
+        playerInventory.put(item, value);
+    }
 
     public void equip(String item, Map<String, Items> inventory) {
         Items temp = null;

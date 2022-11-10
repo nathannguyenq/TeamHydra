@@ -175,7 +175,7 @@ Key
 1
 0
 IT_16
-merchant key
+merchant's key
 Unlocks door in the Sewer Hub.
 Key
 -
